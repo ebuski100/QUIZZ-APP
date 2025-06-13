@@ -915,7 +915,6 @@ function addCoins(amount) {
     updatedCoins = 5000;
   }
 
-  // Update localStorage and the displayed value
   localStorage.setItem("coinCount", updatedCoins);
   coinNum.textContent = updatedCoins;
 
@@ -935,4 +934,3 @@ function resetHints() {
 // resetCoinCount();
 // resetHeartNum();
 // resetTimer();
-//
