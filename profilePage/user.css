@@ -17,12 +17,12 @@ body {
   border: 6px solid blue;
   background: #ffffff;
 
-  width: 90%;
+  width: 100%;
   box-shadow: 0 4px 0 rgb(13, 13, 151);
 
   height: 100%;
   border-radius: 1rem;
-  padding-bottom: 9rem;
+  padding-bottom: 10rem;
 }
 .profile-content {
   display: flex;

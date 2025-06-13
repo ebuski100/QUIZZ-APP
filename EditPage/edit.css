@@ -16,7 +16,7 @@ body {
 
 .edit-container {
   border: 8px solid rgb(0, 17, 255);
-  width: 90%;
+  width: 100%;
   display: flex;
   border-radius: 1rem;
   flex-direction: column;

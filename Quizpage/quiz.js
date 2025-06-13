@@ -565,13 +565,6 @@ setTimeout(() => {
 
 let url = `https://opentdb.com/api.php?amount=15&type=multiple&difficulty=${selectedDifficulty}`;
 
-// if (savedQuestion && savedOptions) {
-//   question.textContent = savedQuestion;
-//   options.forEach((option, i) => {
-//     option.textContent = shuffledAnswers[i];
-//     localStorage.setItem("currentOptions", option.textContent);
-//   });
-// } else {
 fetch(url)
   .then((res) => {
     if (!res.ok) {
