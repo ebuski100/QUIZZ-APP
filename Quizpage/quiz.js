@@ -140,11 +140,13 @@ const secondChanceModal = document.querySelector(".secondChanceModal");
 const currentCoins = parseInt(localStorage.getItem("coinCount")) || 0;
 let currentHeartNum = parseInt(localStorage.getItem("heartNum"));
 
-shareBtn.addEventListener("click", () => {
+shareBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
   const shareData = {
     title: "Villa Quiz Game",
     text: "Try out this fun quiz app and earn rewards!",
-    url: "https://ebuski100.github.io/quiz-app/",
+    url: "https://ebuski100.github.io/QUIZZ-APP/",
   };
 
   if (navigator.share) {
