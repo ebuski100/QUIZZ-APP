@@ -10,7 +10,7 @@ console.log(heartText);
 const savedUsername = localStorage.getItem("username") || "Player";
 const shareBtn = document.querySelector(".userinvite");
 const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/quiz-app/" : "../";
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 const quitBtn = document.querySelector(".quit-btn");
 const currentCoins = parseInt(localStorage.getItem("coinCount")) || 0;
 let currentHeartNum = parseInt(localStorage.getItem("heartNum"));

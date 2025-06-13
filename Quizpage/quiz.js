@@ -127,7 +127,7 @@ function shouldShowSecondChance(currentPrice, currentHeartNum) {
 }
 
 const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/quiz-app/" : "../";
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 
 const quitEarlyModal = document.querySelector(".quitEarlyModal");
 const coinsMaxDisplay = document.querySelector(".coinMax-cont");

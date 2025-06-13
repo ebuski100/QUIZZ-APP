@@ -34,7 +34,7 @@ const profileCameraBtn = document.getElementById("profile-camera-btn");
 const bannerCameraBtn = document.getElementById("banner-camera-btn");
 
 const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/quiz-app/" : "../";
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 
 profileCameraBtn.addEventListener("click", () => {
   localStorage.setItem("captureMode", "profileImage"); // Set flag for profile image

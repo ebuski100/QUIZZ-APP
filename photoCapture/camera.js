@@ -4,7 +4,7 @@ const captureButton = document.querySelector("#capture-button");
 const cancelButton = document.querySelector("#cancel-button");
 
 const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/quiz-app/" : "../";
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 // Access the user's webcam
 navigator.mediaDevices
   .getUserMedia({ video: true })

@@ -6,7 +6,7 @@ const regSubmitBtn = document.querySelector(".regSubmitBtn");
 console.log(regSubmitBtn);
 
 const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/quiz-app/" : "../";
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 document
   .getElementById("registerForm")
   .addEventListener("submit", function (e) {

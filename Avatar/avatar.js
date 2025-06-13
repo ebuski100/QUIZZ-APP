@@ -1,5 +1,5 @@
 const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/quiz-app/" : "../";
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 const avatarItems = document.querySelectorAll(".avatar-item");
 
 const baseUrl = "https://api.dicebear.com/6.x/adventurer/svg?";

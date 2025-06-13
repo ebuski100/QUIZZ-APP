@@ -79,7 +79,7 @@ shareBtn.addEventListener("click", () => {
 });
 
 const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/quiz-app/" : "../";
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 
 const closeHintModal = document.querySelector(".modalCloseBtn");
 let currentHeartNum = parseInt(localStorage.getItem("heartNum"));

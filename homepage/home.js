@@ -10,7 +10,7 @@ const userWelcomeMsg = document.querySelector(".userWelcomeMsg");
 const savedUsername = localStorage.getItem("username") || "Player";
 const url = `https://api.api-ninjas.com/v1/facts`;
 const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/quiz-app/" : "../";
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 
 if (localStorage.getItem("showWelcome") === "true") {
   if (!oldUser) {
@@ -35,7 +35,7 @@ shareBtn.addEventListener("click", (event) => {
   const shareData = {
     title: "Villa Quiz Game",
     text: "Try out this fun quiz app and earn rewards!",
-    url: "https://ebuski100.github.io/quiz-app/",
+    url: "https://ebuski100.github.io/QUIZZ-APP/",
   };
 
   if (navigator.share) {
