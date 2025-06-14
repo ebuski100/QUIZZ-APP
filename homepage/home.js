@@ -140,7 +140,7 @@ footerIcons.forEach((footerIcon) => {
       if (footerIcon.classList.contains("home")) {
         window.location.href = base + "homepage/home.html";
       } else if (footerIcon.classList.contains("profile")) {
-        window.location.href = base + "profilePage/user.html";
+        window.location.href = base + "EditPage/edit.html";
       } else if (footerIcon.classList.contains("setting-icon")) {
         const lastPage = "homepage/home.html";
         localStorage.setItem("lastPage", lastPage);

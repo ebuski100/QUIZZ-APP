@@ -126,7 +126,6 @@ okBtn.addEventListener("click", () => {
     });
   }
   setTimeout(() => {
-    // history.back();
     window.location.href = base + lastPage;
   }, 200);
 });

@@ -1,55 +1,42 @@
 const modal = document.getElementById("myModal");
-const modal1 = document.querySelector(".modal1");
+
 const ageSelect = document.getElementById("Age");
+const lastPage = localStorage.getItem("lastPage");
 const bannerBtn = document.querySelector(".banner-edit-btn");
 const submitBtn = document.querySelector(".button-cont");
-const profileBtn = document.querySelector(".edit-img-btn");
+// const profileBtn = document.querySelector(".edit-img-btn");
+// console.log(profileBtn);
 const closePicsBtn = document.getElementById("close-pics-modal");
-const closeBannerBtn = document.getElementById("close-banner-modal");
+
 const chooseAvatarBtn = document.querySelector(".choose-avatar");
-const modalFooters = document.querySelectorAll(".modal-footer");
+const modalFooter = document.querySelector(".modal-footer");
 const usernameInput = document.querySelector(".usernameInput");
 const savedUsername = localStorage.getItem("username") || "player";
 const savedAge = localStorage.getItem("age");
 const profileGalleryInput = document.getElementById("profileGalleryInput");
 const editQuitBtn = document.querySelector(".editQuitBtn");
 
-const bannerGalleryInput = document.getElementById("bannerGalleryInput");
-
 const profile_Image = document.querySelector(".image-avatar");
 
 const img = document.getElementById("chosen-image");
 
-const banner_Image = document.querySelector(".edit-header");
-
 const profileGallery = document.querySelector(".profileGallery");
 
-const bannerGallery = document.querySelector(".bannerGallery");
-
 const removeProfileBtn = document.querySelector(".remove-profile-btn");
-const removeBannerBtn = document.querySelector(".remove-banner-btn");
 
 const oldUser = localStorage.getItem("oldUser");
 const profileCameraBtn = document.getElementById("profile-camera-btn");
-const bannerCameraBtn = document.getElementById("banner-camera-btn");
 
 const isGithubPages = window.location.hostname.includes("github.io");
 const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 
 profileCameraBtn.addEventListener("click", () => {
-  localStorage.setItem("captureMode", "profileImage"); // Set flag for profile image
-  setTimeout(() => {
-    window.location.href = base + "photoCapture/camera.html";
-  }, 200); // Redirect to camera.html
-});
-
-bannerCameraBtn.addEventListener("click", () => {
-  localStorage.setItem("captureMode", "bannerImage"); // Set flag
+  localStorage.setItem("captureMode", "profileImage");
   setTimeout(() => {
     window.location.href = base + "photoCapture/camera.html";
   }, 200);
-  // Redirect to camera.html
 });
+
 removeProfileBtn.addEventListener("click", () => {
   localStorage.removeItem("profileImage");
   img.src = "../images/user (5).png";
@@ -58,7 +45,7 @@ removeProfileBtn.addEventListener("click", () => {
 
 editQuitBtn.addEventListener("click", () => {
   setTimeout(() => {
-    window.location.href = base + "profilePage/user.html";
+    window.location.href = base + lastPage;
   }, 200);
 });
 if (usernameInput) {
@@ -68,50 +55,26 @@ if (usernameInput) {
 if (Age) {
   ageSelect.value = savedAge;
 }
-removeBannerBtn.addEventListener("click", () => {
-  banner_Image.style.backgroundImage = "none";
-  localStorage.removeItem("bannerImage");
-  modal1.style.display = "none";
+
+modalFooter.addEventListener("click", () => {
+  modal.style.display = "none";
 });
 
-modalFooters.forEach((modalFooter) => {
-  modalFooter.addEventListener("click", () => {
-    modal1.style.display = "none";
-    modal.style.display = "none";
-  });
-});
 bannerBtn.addEventListener("click", () => {
-  modal1.style.display = "block";
-});
-
-console.log(bannerBtn);
-
-profileBtn.addEventListener("click", () => {
   modal.style.display = "block";
 });
 
 closePicsBtn.addEventListener("click", () => {
   modal.style.display = "none";
 });
-closeBannerBtn.addEventListener("click", () => {
-  modal1.style.display = "none";
-});
 
 profileGallery.addEventListener("click", () => {
   profileGalleryInput.click();
-});
-bannerGallery.addEventListener("click", () => {
-  bannerGalleryInput.click();
 });
 
 const image = localStorage.getItem("profileImage");
 if (image) {
   img.src = image;
-}
-
-const banner = localStorage.getItem("bannerImage");
-if (banner) {
-  banner_Image.style.backgroundImage = `url(${banner})`;
 }
 
 chooseAvatarBtn.addEventListener("click", () => {
@@ -128,23 +91,8 @@ submitBtn.addEventListener("click", () => {
   localStorage.setItem("username", username);
   localStorage.setItem("oldUser", "true");
   setTimeout(() => {
-    window.location.href = base + "profilePage/user.html";
+    window.location.href = base + lastPage;
   }, 200);
-});
-
-bannerGalleryInput.addEventListener("change", (event) => {
-  const files = event.target.files;
-  if (files.length > 0) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const imageData = e.target.result;
-      banner_Image.style.backgroundImage = `url(${imageData})`;
-      localStorage.setItem("bannerImage", imageData);
-      console.log("Banner image stored in localStorage:", imageData);
-    };
-    reader.readAsDataURL(files[0]);
-    modal1.style.display = "none";
-  }
 });
 
 profileGalleryInput.addEventListener("change", (event) => {

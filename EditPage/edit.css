@@ -32,29 +32,8 @@ body {
   padding: 1rem;
 
   justify-content: space-between;
-  align-items: flex-start;
-
-  background-color: rgba(176, 190, 236, 0.438);
-  height: 200px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
-.edit-img-btn {
-  border: 3px solid #fff;
-  background: blue;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  bottom: -0.5rem;
-  left: -1.5rem;
-  position: absolute;
-}
 .image-avatar {
   border: 5px solid blue;
   border-radius: 50%;
@@ -120,11 +99,6 @@ body {
   align-items: center;
 }
 
-.editImgBtnCont {
-  position: relative;
-
-  height: 100%;
-}
 .user-description {
   padding: 0 2rem;
   margin: 1rem 0;
@@ -213,8 +187,7 @@ body {
 
 /* modal-design */
 
-.modal,
-.modal1 {
+.modal {
   display: none;
   position: fixed;
 
@@ -325,11 +298,6 @@ body {
   color: #fff;
 }
 
-.storeBtnBackground {
-  background-color: white;
-  color: rgb(2, 2, 39);
-  font-weight: bold;
-}
 .bodyColor {
   color: #26a2f5;
   font-weight: bold;

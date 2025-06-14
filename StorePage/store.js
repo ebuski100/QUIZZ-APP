@@ -9,7 +9,7 @@ const getLifeItems = document.querySelectorAll(".getLife");
 const shareBtn = document.querySelector(".invite");
 const modalFooter = document.querySelector(".modal-footer");
 const getAHintModal = document.querySelector(".getAHintModal");
-// Load the adLinks.json file
+
 const heartText = document.querySelector(".heartnum");
 const getaHintCoin = document.getElementById("getAHintCoin");
 const fewCoinsAdBtn = document.getElementById("few-coinsAdBtn");
@@ -892,7 +892,7 @@ footerIcons.forEach((footerIcon) => {
       if (footerIcon.classList.contains("home")) {
         window.location.href = base + "homepage/home.html";
       } else if (footerIcon.classList.contains("profile")) {
-        window.location.href = base + "profilePage/user.html";
+        window.location.href = base + "EditPage/edit.html";
       } else if (footerIcon.classList.contains("setting-icon")) {
         const lastPage = "StorePage/store.html";
         localStorage.setItem("lastPage", lastPage);

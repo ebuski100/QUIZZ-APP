@@ -143,6 +143,7 @@ let currentHeartNum = parseInt(localStorage.getItem("heartNum"));
 shareBtn.addEventListener("click", (event) => {
   event.preventDefault();
   event.stopPropagation();
+
   const shareData = {
     title: "Villa Quiz Game",
     text: "Try out this fun quiz app and earn rewards!",
@@ -155,7 +156,6 @@ shareBtn.addEventListener("click", (event) => {
       .then(() => console.log("App shared successfully!"))
       .catch((error) => console.log("Error sharing:", error));
   } else {
-    // Fallback: copy link to clipboard
     navigator.clipboard.writeText(shareData.url).then(() => {
       alert("Quiz app link copied to clipboard!\n Share it with your friends.");
     });
@@ -258,7 +258,7 @@ anotherQuestion.addEventListener("click", () => {
 userProfile.addEventListener("click", () => {
   localStorage.setItem("hasAnswered", "true");
   setTimeout(() => {
-    location.href = base + "profilePage/user.html";
+    location.href = base + "EditPage/edit.html";
   }, 200);
 });
 moreTimeOption.addEventListener("click", () => {
