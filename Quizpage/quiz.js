@@ -171,6 +171,7 @@ pauseTimeNum.textContent = pauseTimeCount;
 quizSetting.addEventListener("click", () => {
   localStorage.setItem("hasAnswered", "true");
   setTimeout(() => {
+    localStorage.setItem("lastPage", window.location.pathname);
     location.href = base + "SettingsPage/setting.html";
   }, 200);
 });

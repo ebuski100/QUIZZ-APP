@@ -8,6 +8,7 @@ const themeIcon = document.querySelector(".themeIcon");
 const savedTheme = localStorage.getItem("theme") || "light";
 const selectedDifficulty = localStorage.getItem("selectedDifficulty") || "easy";
 
+const lastPage = localStorage.getItem("lastPage");
 const isGithubPages = window.location.hostname.includes("github.io");
 const base = isGithubPages ? "/QUIZZ-APP/" : "../";
 
@@ -126,6 +127,6 @@ okBtn.addEventListener("click", () => {
   }
   setTimeout(() => {
     // history.back();
-    window.location.href = base + "homepage/home.html";
+    window.location.href = base + lastPage;
   }, 200);
 });
