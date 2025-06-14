@@ -168,7 +168,7 @@ if (savedTheme === "dark") {
   document.body.classList.add("bodyColor");
 }
 
-const savedMusicState = localStorage.getItem("musicState") || "paused";
+const savedMusicState = localStorage.getItem("musicState") || "playing";
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();

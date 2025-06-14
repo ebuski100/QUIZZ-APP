@@ -71,7 +71,7 @@ storeBtns.forEach((storeBtn) => {
   });
 });
 
-const savedMusicState = localStorage.getItem("musicState") || "paused";
+const savedMusicState = localStorage.getItem("musicState") || "playing";
 
 shareBtn.addEventListener("click", (event) => {
   event.preventDefault();

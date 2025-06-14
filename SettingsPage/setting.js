@@ -40,7 +40,7 @@ const musicBtn = document.querySelector(".item4"); // Select the Music button
 const backgroundMusic = document.getElementById("backgroundMusic"); // Select the audio element
 
 const backgroundMusicIcon = document.querySelector(".background-music-icon");
-const savedMusicState = localStorage.getItem("musicState") || "paused";
+const savedMusicState = localStorage.getItem("musicState") || "playing";
 const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
 backgroundMusic.currentTime = savedMusicTime;
 backgroundMusic.addEventListener("timeupdate", () => {

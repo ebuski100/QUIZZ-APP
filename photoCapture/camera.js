@@ -58,7 +58,7 @@ captureButton.addEventListener("click", () => {
     window.location.href = base + "EditPage/edit.html";
   }, 200);
 });
-const savedMusicState = localStorage.getItem("musicState") || "paused";
+const savedMusicState = localStorage.getItem("musicState") || "playing";
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();

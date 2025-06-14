@@ -812,7 +812,7 @@ if (savedTheme === "dark") {
     storeBtn.classList.add("storeBtnBackground");
   });
 }
-const savedMusicState = localStorage.getItem("musicState") || "paused";
+const savedMusicState = localStorage.getItem("musicState") || "playing";
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();
