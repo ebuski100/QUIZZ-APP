@@ -78,11 +78,6 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-// const savedMusicTime = parseFloat(sessionStorage.getItem("musicTime")) || 0;
-// backgroundMusic.currentTime = savedMusicTime;
-// backgroundMusic.addEventListener("timeupdate", () => {
-//   sessionStorage.setItem("musicTime", backgroundMusic.currentTime);
-// });
 const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
 backgroundMusic.currentTime = savedMusicTime;
 backgroundMusic.addEventListener("timeupdate", () => {

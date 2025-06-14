@@ -45,12 +45,8 @@ const backgroundMusic = document.getElementById("backgroundMusic"); // Select th
 
 const backgroundMusicIcon = document.querySelector(".background-music-icon");
 
-// const savedMusicState = localStorage.getItem("musicState") || "paused";
-// const savedMusicTime = parseFloat(sessionStorage.getItem("musicTime")) || 0;
-// backgroundMusic.currentTime = savedMusicTime;
-// backgroundMusic.addEventListener("timeupdate", () => {
-//   sessionStorage.setItem("musicTime", backgroundMusic.currentTime);
-// });
+const savedMusicState = localStorage.getItem("musicState") || "paused";
+
 const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
 backgroundMusic.currentTime = savedMusicTime;
 backgroundMusic.addEventListener("timeupdate", () => {
