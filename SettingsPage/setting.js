@@ -61,11 +61,23 @@ if (savedMusicState === "playing") {
   backgroundMusicIcon.src = "../images/mute.png"; // Save the state as playing
 }
 
+// document.addEventListener("visibilitychange", () => {
+//   if (document.hidden) {
+//     backgroundMusic.pause();
+//   } else {
+//     backgroundMusic.play();
+//   }
+// });
+
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    backgroundMusic.pause();
+  if (savedMusicState === "playing") {
+    if (document.hidden) {
+      backgroundMusic.pause();
+    } else {
+      backgroundMusic.play();
+    }
   } else {
-    backgroundMusic.play();
+    backgroundMusic.pause();
   }
 });
 musicBtn.addEventListener("click", () => {

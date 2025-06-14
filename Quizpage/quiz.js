@@ -1152,11 +1152,23 @@ if (savedMusicState === "playing") {
   backgroundMusic.pause();
 }
 
+// document.addEventListener("visibilitychange", () => {
+//   if (document.hidden) {
+//     backgroundMusic.pause();
+//   } else {
+//     backgroundMusic.play();
+//   }
+// });
+
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    backgroundMusic.pause();
+  if (savedMusicState === "playing") {
+    if (document.hidden) {
+      backgroundMusic.pause();
+    } else {
+      backgroundMusic.play();
+    }
   } else {
-    backgroundMusic.play();
+    backgroundMusic.pause();
   }
 });
 const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
