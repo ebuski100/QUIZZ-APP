@@ -135,16 +135,16 @@ document.addEventListener("visibilitychange", () => {
     backgroundMusic.pause();
   }
 });
-const savedMusicTime = parseFloat(sessionStorage.getItem("musicTime")) || 0;
-backgroundMusic.currentTime = savedMusicTime;
-backgroundMusic.addEventListener("timeupdate", () => {
-  sessionStorage.setItem("musicTime", backgroundMusic.currentTime);
-});
-// const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
+// const savedMusicTime = parseFloat(sessionStorage.getItem("musicTime")) || 0;
 // backgroundMusic.currentTime = savedMusicTime;
 // backgroundMusic.addEventListener("timeupdate", () => {
-//   localStorage.setItem("musicTime", backgroundMusic.currentTime);
+//   sessionStorage.setItem("musicTime", backgroundMusic.currentTime);
 // });
+const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
+backgroundMusic.currentTime = savedMusicTime;
+backgroundMusic.addEventListener("timeupdate", () => {
+  localStorage.setItem("musicTime", backgroundMusic.currentTime);
+});
 const buttons = document.querySelectorAll(".btn");
 let soundState = localStorage.getItem("soundState") || "on";
 
