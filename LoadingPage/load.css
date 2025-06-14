@@ -38,6 +38,9 @@ body {
   align-items: center;
 }
 
+.game-icon {
+  margin-bottom: 1.5rem;
+}
 .loader-progress {
   background: linear-gradient(to right, blue, purple);
   height: 0.7rem;

@@ -8,6 +8,9 @@ const themeIcon = document.querySelector(".themeIcon");
 const savedTheme = localStorage.getItem("theme") || "light";
 const selectedDifficulty = localStorage.getItem("selectedDifficulty") || "easy";
 
+const isGithubPages = window.location.hostname.includes("github.io");
+const base = isGithubPages ? "/QUIZZ-APP/" : "../";
+
 difficultySelect.value = selectedDifficulty;
 difficultySelect.addEventListener("change", () => {
   const selectedDifficulty = difficultySelect.value;
@@ -60,6 +63,8 @@ if (savedMusicState === "playing") {
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     backgroundMusic.pause();
+  } else {
+    backgroundMusic.play();
   }
 });
 musicBtn.addEventListener("click", () => {
@@ -91,13 +96,13 @@ if (soundState === "on") {
 soundBtn.addEventListener("click", () => {
   if (soundState === "on") {
     soundState = "off";
-    soundIcon.src = "../images/mute.png"; // Update icon to mute
-    localStorage.setItem("soundState", "off"); // Save state
+    soundIcon.src = "../images/mute.png";
+    localStorage.setItem("soundState", "off");
     console.log("Sound effects turned off");
   } else {
     soundState = "on";
-    soundIcon.src = "../images/volume.png"; // Update icon to volume
-    localStorage.setItem("soundState", "on"); // Save state
+    soundIcon.src = "../images/volume.png";
+    localStorage.setItem("soundState", "on");
     console.log("Sound effects turned on");
   }
 });
@@ -120,6 +125,7 @@ okBtn.addEventListener("click", () => {
     });
   }
   setTimeout(() => {
-    history.back();
+    // history.back();
+    window.location.href = base + "homepage/home.html";
   }, 200);
 });

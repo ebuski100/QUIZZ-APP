@@ -62,6 +62,8 @@ if (savedMusicState === "playing") {
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     backgroundMusic.pause();
+  } else {
+    backgroundMusic.play();
   }
 });
 const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;

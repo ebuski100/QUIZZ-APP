@@ -104,6 +104,8 @@ if (savedMusicState === "playing") {
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     backgroundMusic.pause();
+  } else {
+    backgroundMusic.play();
   }
 });
 const footerIcons = document.querySelectorAll(".tooltip-box");
