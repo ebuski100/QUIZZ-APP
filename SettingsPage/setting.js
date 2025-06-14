@@ -57,7 +57,11 @@ if (savedMusicState === "playing") {
   backgroundMusicIcon.src = "../images/mute.png"; // Save the state as playing
 }
 
-// Add event listener to toggle music playback
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    backgroundMusic.pause();
+  }
+});
 musicBtn.addEventListener("click", () => {
   if (backgroundMusic.paused) {
     backgroundMusic.play();

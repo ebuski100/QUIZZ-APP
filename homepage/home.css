@@ -186,7 +186,17 @@ button {
   font-weight: bold;
   font-family: cursive;
 }
-
+.factsCont {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+  border-radius: 1rem;
+  padding: 1rem 0.5rem;
+  box-shadow: 0 3px 0 rgb(184, 172, 8);
+}
 .facts {
   padding: 1rem;
   border-radius: 1rem;
@@ -194,12 +204,10 @@ button {
   background-color: yellow;
   font-family: cursive;
   text-align: center;
-  margin-top: 1rem;
-  width: 80%;
+
+  width: 100%;
 
   overflow-wrap: break-word;
-  /* border: 1px solid red; */
-  box-shadow: 0 3px 0 rgb(184, 172, 8);
 }
 
 .footer {
@@ -248,11 +256,19 @@ button {
 .homeHeader {
   color: rgb(255, 136, 0);
   font-family: cursive;
-  font-size: 2rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
   font-weight: bold;
   text-align: center;
   /* border: 1px solid blue; */
+}
+.factsheader {
+  color: blue;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: blue;
+  text-decoration-thickness: 3px;
+  font-weight: bold;
 }
 .userWelcomeMsg {
   background: linear-gradient(90deg, blue, red, purple, orange);
@@ -433,5 +449,8 @@ button {
   }
   .footer {
     padding: 1rem 4rem;
+  }
+  .homeHeader {
+    font-size: 2rem;
   }
 }

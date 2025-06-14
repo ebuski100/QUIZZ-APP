@@ -1140,13 +1140,19 @@ if (savedTheme === "dark") {
   });
 }
 
-const savedMusicState = localStorage.getItem("musicState") || "paused";
+const savedMusicState = localStorage.getItem("musicState") || "playing";
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();
 } else {
   backgroundMusic.pause();
 }
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    backgroundMusic.pause();
+  }
+});
 const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
 backgroundMusic.currentTime = savedMusicTime;
 backgroundMusic.addEventListener("timeupdate", () => {

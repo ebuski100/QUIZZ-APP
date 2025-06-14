@@ -1,8 +1,7 @@
 const dailyFacts = document.querySelector(".facts");
 
-const profileBtn = document.querySelector(".profile");
 const backgroundMusic = document.getElementById("backgroundMusic");
-profileBtn.addEventListener("click", () => {});
+
 const soundEffect = document.getElementById("soundEffect");
 const shareBtn = document.querySelector(".homeInvite");
 const key = "bd2DHoYWEBZI3SRst11pdQ==AKpB7FjAFnNsNFiU";
@@ -163,6 +162,11 @@ if (savedMusicState === "playing") {
   backgroundMusic.pause();
 }
 
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    backgroundMusic.pause();
+  }
+});
 const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
 backgroundMusic.currentTime = savedMusicTime;
 backgroundMusic.addEventListener("timeupdate", () => {
