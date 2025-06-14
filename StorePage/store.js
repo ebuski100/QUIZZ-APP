@@ -817,13 +817,6 @@ if (savedMusicState === "playing") {
 } else {
   backgroundMusic.pause();
 }
-// document.addEventListener("visibilitychange", () => {
-//   if (document.hidden) {
-//     backgroundMusic.pause();
-//   } else {
-//     backgroundMusic.play();
-//   }
-// });
 
 document.addEventListener("visibilitychange", () => {
   if (savedMusicState === "playing") {
@@ -837,11 +830,16 @@ document.addEventListener("visibilitychange", () => {
   }
 });
 
-const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
+const savedMusicTime = parseFloat(sessionStorage.getItem("musicTime")) || 0;
 backgroundMusic.currentTime = savedMusicTime;
 backgroundMusic.addEventListener("timeupdate", () => {
-  localStorage.setItem("musicTime", backgroundMusic.currentTime);
+  sessionStorage.setItem("musicTime", backgroundMusic.currentTime);
 });
+// const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
+// backgroundMusic.currentTime = savedMusicTime;
+// backgroundMusic.addEventListener("timeupdate", () => {
+//   localStorage.setItem("musicTime", backgroundMusic.currentTime);
+// });
 
 const buttons = document.querySelectorAll(".btn");
 

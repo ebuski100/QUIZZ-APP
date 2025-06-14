@@ -44,12 +44,18 @@ const musicBtn = document.querySelector(".item4"); // Select the Music button
 const backgroundMusic = document.getElementById("backgroundMusic"); // Select the audio element
 
 const backgroundMusicIcon = document.querySelector(".background-music-icon");
+
 const savedMusicState = localStorage.getItem("musicState") || "paused";
-const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
+const savedMusicTime = parseFloat(sessionStorage.getItem("musicTime")) || 0;
 backgroundMusic.currentTime = savedMusicTime;
 backgroundMusic.addEventListener("timeupdate", () => {
-  localStorage.setItem("musicTime", backgroundMusic.currentTime);
+  sessionStorage.setItem("musicTime", backgroundMusic.currentTime);
 });
+// const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
+// backgroundMusic.currentTime = savedMusicTime;
+// backgroundMusic.addEventListener("timeupdate", () => {
+//   localStorage.setItem("musicTime", backgroundMusic.currentTime);
+// });
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();
@@ -60,14 +66,6 @@ if (savedMusicState === "playing") {
 
   backgroundMusicIcon.src = "../images/mute.png"; // Save the state as playing
 }
-
-// document.addEventListener("visibilitychange", () => {
-//   if (document.hidden) {
-//     backgroundMusic.pause();
-//   } else {
-//     backgroundMusic.play();
-//   }
-// });
 
 document.addEventListener("visibilitychange", () => {
   if (savedMusicState === "playing") {
