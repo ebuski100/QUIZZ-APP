@@ -142,7 +142,8 @@ footerIcons.forEach((footerIcon) => {
       } else if (footerIcon.classList.contains("profile")) {
         window.location.href = base + "profilePage/user.html";
       } else if (footerIcon.classList.contains("setting-icon")) {
-        localStorage.setItem("lastPage", window.location.pathname);
+        const lastPage = "homepage/home.html";
+        localStorage.setItem("lastPage", lastPage);
         window.location.href = base + "SettingsPage/setting.html";
       } else {
         window.location.href = base + "StorePage/store.html";
