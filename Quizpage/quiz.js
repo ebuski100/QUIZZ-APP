@@ -258,6 +258,8 @@ anotherQuestion.addEventListener("click", () => {
 userProfile.addEventListener("click", () => {
   localStorage.setItem("hasAnswered", "true");
   setTimeout(() => {
+    const lastPage = "Quizpage/quiz.html";
+    localStorage.setItem("lastPage", lastPage);
     location.href = base + "EditPage/edit.html";
   }, 200);
 });
