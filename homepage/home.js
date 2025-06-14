@@ -1,8 +1,9 @@
 const dailyFacts = document.querySelector(".facts");
 
 const profileBtn = document.querySelector(".profile");
-
+const backgroundMusic = document.getElementById("backgroundMusic");
 profileBtn.addEventListener("click", () => {});
+const soundEffect = document.getElementById("soundEffect");
 const shareBtn = document.querySelector(".homeInvite");
 const key = "bd2DHoYWEBZI3SRst11pdQ==AKpB7FjAFnNsNFiU";
 const oldUser = localStorage.getItem("oldUser");
@@ -11,6 +12,10 @@ const savedUsername = localStorage.getItem("username") || "Player";
 const url = `https://api.api-ninjas.com/v1/facts`;
 const isGithubPages = window.location.hostname.includes("github.io");
 const base = isGithubPages ? "/QUIZZ-APP/" : "../";
+const savedMusicState = localStorage.getItem("musicState") || "paused";
+
+const buttons = document.querySelectorAll(".btn");
+let soundState = localStorage.getItem("soundState") || "on";
 
 if (localStorage.getItem("showWelcome") === "true") {
   if (!oldUser) {
@@ -150,12 +155,7 @@ const homeBody = document.querySelector(".container");
 
 if (savedTheme === "dark") {
   homeBody.classList.add("dark");
-  storeBtns.forEach((storeBtn) => {
-    storeBtn.classList.add("storeBtnBackground");
-  });
 }
-
-const savedMusicState = localStorage.getItem("musicState") || "paused";
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();
@@ -169,10 +169,6 @@ backgroundMusic.addEventListener("timeupdate", () => {
   localStorage.setItem("musicTime", backgroundMusic.currentTime);
 });
 
-const buttons = document.querySelectorAll(".btn");
-let soundState = localStorage.getItem("soundState") || "on";
-
-const soundEffect = document.getElementById("soundEffect");
 buttons.forEach((button) => {
   console.log(soundState);
   button.addEventListener("click", () => {
@@ -182,3 +178,4 @@ buttons.forEach((button) => {
     }
   });
 });
+console.log(buttons);
