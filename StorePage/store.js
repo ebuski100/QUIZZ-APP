@@ -28,11 +28,9 @@ const allHintsCoin = document.getElementById("allHintsCoin");
 const allHintsLife = document.getElementById("allHintsLife");
 const savedCoins = parseInt(localStorage.getItem("coinCount")) || 0;
 let soundState = localStorage.getItem("soundState") || "on";
-// const savedHeartNum = parseInt(localStorage.getItem("heartNum")) || 0;
-// heartText.textContent = savedHeartNum;
+
 const heartNum = parseInt(localStorage.getItem("heartNum")) || 0;
 
-// const heartAnsTime = document.getElementById("ansTimeHeart");
 const coinAnsTime = document.getElementById("ansTimeCoin");
 const disableTimer = localStorage.getItem("disableTimer");
 const fiftyFiftyUsed = localStorage.getItem("fiftyFiftyUsed");
@@ -812,7 +810,7 @@ if (savedTheme === "dark") {
     storeBtn.classList.add("storeBtnBackground");
   });
 }
-const savedMusicState = localStorage.getItem("musicState") || "playing";
+const savedMusicState = localStorage.getItem("musicState") || "paused";
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();

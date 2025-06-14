@@ -1144,7 +1144,7 @@ if (savedTheme === "dark") {
   });
 }
 
-const savedMusicState = localStorage.getItem("musicState") || "playing";
+const savedMusicState = localStorage.getItem("musicState") || "paused";
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();

@@ -11,7 +11,7 @@ const savedUsername = localStorage.getItem("username") || "Player";
 const url = `https://api.api-ninjas.com/v1/facts`;
 const isGithubPages = window.location.hostname.includes("github.io");
 const base = isGithubPages ? "/QUIZZ-APP/" : "../";
-const savedMusicState = localStorage.getItem("musicState") || "playing";
+const savedMusicState = localStorage.getItem("musicState") || "paused";
 
 const buttons = document.querySelectorAll(".btn");
 let soundState = localStorage.getItem("soundState") || "on";
