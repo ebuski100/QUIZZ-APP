@@ -8,6 +8,9 @@
   const secureLocalhost = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
   if (!window.isSecureContext && !secureLocalhost) return;
 
-  navigator.serviceWorker.register(new URL("sw.js", appRoot), { scope: appRoot.pathname })
+  navigator.serviceWorker.register(new URL("sw.js", appRoot), {
+    scope: appRoot.pathname,
+    updateViaCache: "none"
+  })
     .catch((error) => console.warn("QuizVilla offline support could not start.", error));
 })();

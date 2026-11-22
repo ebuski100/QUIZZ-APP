@@ -728,6 +728,7 @@ body {
 }
 .gameButtons {
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .exit {
@@ -744,7 +745,8 @@ body {
     flex-direction: column;
   }
   .play,
-  .exit {
+  .exit,
+  .gameButtons .pwa-install-home {
     width: 100%;
   }
 }

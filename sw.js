@@ -1,10 +1,10 @@
 /* Increment CACHE_NAME when the cached app shell or cache policy changes. */
-const CACHE_NAME = "quizvilla-shell-v1";
+const CACHE_NAME = "quizvilla-shell-v2";
 const CACHE_PREFIX = "quizvilla-shell-";
 const APP_SCOPE = new URL("./", self.registration.scope);
 const OFFLINE_URL = new URL("offline.html", APP_SCOPE).href;
 
-const PRECACHE_PATHS = [
+const CORE_PATHS = [
   "index.html",
   "offline.html",
   "manifest.json",
@@ -39,7 +39,10 @@ const PRECACHE_PATHS = [
   "photoCapture/camera.css",
   "photoCapture/camera.js",
   "LoadingPage/load.css",
-  "LoadingPage/load.js",
+  "LoadingPage/load.js"
+];
+
+const OPTIONAL_PATHS = [
   "adLinks.json",
   "praise.json",
   "images/idea.png",
@@ -84,6 +87,7 @@ function toAppUrl(path) {
 function isCacheableStaticRequest(request, url) {
   if (request.method !== "GET" || request.headers.has("range")) return false;
   if (request.headers.has("authorization")) return false;
+  if (url.search) return false;
   if (url.origin !== APP_SCOPE.origin || !url.pathname.startsWith(APP_SCOPE.pathname)) return false;
   if (url.pathname.endsWith(".json")) {
     return ["adLinks.json", "praise.json", "manifest.json"].some((path) => url.pathname === toAppUrl(path).replace(APP_SCOPE.origin, ""));
@@ -106,8 +110,11 @@ async function storeIfSmall(cache, request, response) {
 self.addEventListener("install", (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
-    const urls = PRECACHE_PATHS.map(toAppUrl);
-    await cache.addAll(urls);
+    await cache.addAll(CORE_PATHS.map(toAppUrl));
+    await Promise.allSettled(OPTIONAL_PATHS.map(async (path) => {
+      try { await cache.add(toAppUrl(path)); }
+      catch (_) { /* The app shell must still install when an optional file is unavailable. */ }
+    }));
     await self.skipWaiting();
   })());
 });
@@ -129,7 +136,7 @@ self.addEventListener("fetch", (event) => {
   if (request.mode === "navigate") {
     event.respondWith((async () => {
       try {
-        const response = await fetch(request);
+        const response = await fetch(request, { cache: "no-cache" });
         if (response.ok) {
           const cache = await caches.open(CACHE_NAME);
           await storeIfSmall(cache, request, response);
@@ -148,12 +155,14 @@ self.addEventListener("fetch", (event) => {
   if (!isCacheableStaticRequest(request, url)) return;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
-    const cached = await cache.match(request, { ignoreSearch: false });
-    if (cached) return cached;
     try {
-      const response = await fetch(request);
-      return await storeIfSmall(cache, request, response);
+      const response = await fetch(request, { cache: "no-cache" });
+      if (response.ok) return await storeIfSmall(cache, request, response);
+      const cached = await cache.match(request, { ignoreSearch: false });
+      return cached || response;
     } catch (_) {
+      const cached = await cache.match(request, { ignoreSearch: false });
+      if (cached) return cached;
       if (/\.(?:png|jpe?g|jfif|gif|svg|ico|webp)$/i.test(url.pathname)) {
         const fallback = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#0b1220"/><circle cx="32" cy="32" r="17" fill="none" stroke="#d6ad60" stroke-width="3"/><path d="M24 35h16m-14 5h12" stroke="#f0ca7a" stroke-width="3" stroke-linecap="round"/></svg>';
         return new Response(fallback, { status: 200, headers: { "Content-Type": "image/svg+xml", "Cache-Control": "no-store" } });

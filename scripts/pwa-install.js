@@ -1,10 +1,19 @@
 (() => {
   "use strict";
 
-  const installButton = document.querySelector(".pwa-install-button");
-  const installStatus = document.querySelector(".pwa-install-status");
-  const installDialog = document.getElementById("pwa-install-dialog");
-  if (!installButton || !installDialog) return;
+  const installButtons = [...document.querySelectorAll(".pwa-install-button")];
+  const installStatuses = [...document.querySelectorAll(".pwa-install-status")];
+  if (!installButtons.length) return;
+
+  let installDialog = document.getElementById("pwa-install-dialog");
+  if (!installDialog) {
+    installDialog = document.createElement("dialog");
+    installDialog.id = "pwa-install-dialog";
+    installDialog.className = "pwa-install-dialog";
+    installDialog.setAttribute("aria-labelledby", "pwa-install-title");
+    installDialog.innerHTML = '<div class="pwa-install-dialog-content"><button class="pwa-install-close" type="button" data-install-close aria-label="Close installation help">&times;</button><h2 id="pwa-install-title" data-install-title>Install QuizVilla</h2><p data-install-intro></p><ol data-install-steps></ol></div>';
+    document.body.append(installDialog);
+  }
 
   let deferredPrompt = null;
   const dialogTitle = installDialog.querySelector("[data-install-title]");
@@ -19,8 +28,12 @@
 
   function updateVisibility() {
     const installed = isInstalled();
-    installButton.hidden = installed;
-    if (installed) installStatus.textContent = "QuizVilla is installed on this device.";
+    installButtons.forEach((button) => { button.hidden = installed; });
+    if (installed) setStatus("QuizVilla is installed on this device.");
+  }
+
+  function setStatus(message) {
+    installStatuses.forEach((status) => { status.textContent = message; });
   }
 
   function platformInstructions() {
@@ -75,18 +88,17 @@
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     deferredPrompt = event;
-    installButton.textContent = "Install QuizVilla";
-    installStatus.textContent = "Install QuizVilla on this device.";
+    setStatus("Install QuizVilla on this device.");
     updateVisibility();
   });
 
   window.addEventListener("appinstalled", () => {
     deferredPrompt = null;
-    installButton.hidden = true;
-    installStatus.textContent = "QuizVilla is installed on this device.";
+    installButtons.forEach((button) => { button.hidden = true; });
+    setStatus("QuizVilla is installed on this device.");
   });
 
-  installButton.addEventListener("click", async () => {
+  async function handleInstallClick() {
     if (!deferredPrompt) {
       showInstructions();
       return;
@@ -97,14 +109,16 @@
       await promptEvent.prompt();
       const result = await promptEvent.userChoice;
       if (result?.outcome === "accepted") {
-        installStatus.textContent = "QuizVilla is being installed.";
+        setStatus("QuizVilla is being installed.");
       } else {
-        installStatus.textContent = "You can install QuizVilla later from this page.";
+        setStatus("You can install QuizVilla later from this page.");
       }
     } catch (_) {
-      installStatus.textContent = "Use the browser menu to install QuizVilla.";
+      setStatus("Use the browser menu to install QuizVilla.");
     }
-  });
+  }
+
+  installButtons.forEach((button) => button.addEventListener("click", handleInstallClick));
 
   closeButton.addEventListener("click", () => installDialog.close?.());
   installDialog.addEventListener("click", (event) => {
