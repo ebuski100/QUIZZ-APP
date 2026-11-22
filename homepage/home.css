@@ -93,7 +93,7 @@ body {
 }
 .homeInvite {
   padding: 0;
-  background-color: yellow;
+  /* background-color: yellow; */
 }
 .homeInvite img {
   width: 17px;
@@ -988,8 +988,7 @@ body:has(.container.light) {
 
 /* Light mode: quick-link icon contrast */
 [data-theme="light"] .profile-icon,
-[data-theme="light"] .store-icon,
-[data-theme="light"] .setting-icon {
+[data-theme="light"] .store-icon {
   background: #17243d;
   border: 1px solid #d6ad59;
   border-radius: 12px;
