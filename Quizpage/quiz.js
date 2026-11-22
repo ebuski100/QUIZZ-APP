@@ -718,11 +718,9 @@ fetch(url)
       });
     });
 
-    gsap.from(".question", {
-      x: 200,
-      opacity: 0,
-      duration: 0.2,
-    });
+    if (window.gsap?.from) {
+      window.gsap.from(".question", { x: 200, opacity: 0, duration: 0.2 });
+    }
     hints.forEach((hint) => {
       hint.style.backgroundColor = "";
       hint.style.pointerEvents = "auto";
@@ -1036,12 +1034,14 @@ function toggleVideoElementShow() {
 adVideo.addEventListener("click", toggleVideoElementShow);
 adVideo.addEventListener("dblclick", togglePlayPause);
 
-gsap.from(".option-text", {
-  x: 200, // Fly in from the right
-  opacity: 0,
-  duration: 0.5,
-  stagger: 0.5,
-});
+if (window.gsap?.from) {
+  window.gsap.from(".option-text", {
+    x: 200,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.5,
+  });
+}
 leaveBtns.forEach((leaveBtn) => {
   leaveBtn.addEventListener("click", () => {
     setTimeout(() => {

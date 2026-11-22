@@ -7,12 +7,21 @@
       content="width=device-width, initial-scale=1.0"
     />
     <script src="../styles/theme.js"></script>
+    <script src="../scripts/pwa.js" defer></script>
+    <script src="../scripts/pwa-install.js" defer></script>
+    <link rel="manifest" href="../manifest.json" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="QuizVilla" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#0b1220" />
     <title>Settings | QuizVilla</title>
     <link rel="stylesheet" href="../styles/design-system.css" />
     <link rel="icon" type="image/png" href="../images/idea.png" />
     <link rel="stylesheet" href="setting.css" />
     <link rel="stylesheet" href="../styles/theme.css" />
+    <link rel="stylesheet" href="../styles/pwa.css" />
   </head>
   <body>
     <main class="settings-shell">
@@ -147,6 +156,15 @@
                 ><span class="switch" aria-hidden="true"></span>
               </button>
             </div>
+
+            <div class="setting-row pwa-install-row">
+              <div class="setting-copy">
+                <span class="setting-name">Install QuizVilla</span>
+                <span class="setting-description">Add QuizVilla to your device for a convenient app-style launch.</span>
+                <p class="pwa-install-status" aria-live="polite">Installation is available from this device's browser.</p>
+              </div>
+              <button class="pwa-install-button" type="button" aria-haspopup="dialog" aria-controls="pwa-install-dialog">Install options</button>
+            </div>
           </div>
 
           <footer class="panel-footer">
@@ -162,6 +180,15 @@
         <p class="footer-caption">MADE FOR THE CURIOUS</p>
       </section>
     </main>
+
+    <dialog id="pwa-install-dialog" class="pwa-install-dialog" aria-labelledby="pwa-install-title">
+      <div class="pwa-install-dialog-content">
+        <button class="pwa-install-close" type="button" data-install-close aria-label="Close installation help">&times;</button>
+        <h2 id="pwa-install-title" data-install-title>Install QuizVilla</h2>
+        <p data-install-intro></p>
+        <ol data-install-steps></ol>
+      </div>
+    </dialog>
 
     <audio id="backgroundMusic" loop preload="metadata">
       <source src="../sounds/alan_walker.mp3" type="audio/mpeg" />
