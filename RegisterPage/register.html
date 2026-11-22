@@ -1,101 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="../styles/theme.js"></script>
+    <meta name="theme-color" content="#0b1220" />
+    <title>Join QuizVilla</title>
+    <link rel="icon" type="image/png" href="../images/idea.png" />
+    <link rel="stylesheet" href="../styles/design-system.css" />
     <link rel="stylesheet" href="register.css" />
+    <link rel="stylesheet" href="../styles/theme.css" />
   </head>
   <body>
-    <div class="registerContainer">
-      <div class="registerHead">
-        <img src="../images/idea.png" height="110" alt="" />
-        <div class="headtext noCopy">Villa Quiz Game</div>
-      </div>
+    <main class="registerPage">
+      <div class="ambient ambientOne" aria-hidden="true"></div>
+      <div class="ambient ambientTwo" aria-hidden="true"></div>
 
-      <form class="formBody" id="registerForm">
-        <h2 class="registerHeader noCopy">Login</h2>
-        <label for="Username" class="noCopy">Username</label>
-        <input
-          class="Username btn"
-          type="text"
-          type="text"
-          required
-          placeholder="Enter Username"
-          id="username"
-        />
-        <label for="age" class="noCopy">Age:</label>
-        <select id="age" class="btn" required>
-          <option value="">Select age</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
-          <option value="21">21</option>
-          <option value="22">22</option>
-          <option value="23">23</option>
-          <option value="24">24</option>
-          <option value="25">25</option>
-          <option value="26">26</option>
-          <option value="27">27</option>
-          <option value="28">28</option>
-          <option value="29">29</option>
-          <option value="30">30</option>
-          <option value="31">31</option>
-          <option value="32">32</option>
-          <option value="33">33</option>
-          <option value="34">34</option>
-          <option value="35">35</option>
-          <option value="36">36</option>
-          <option value="37">37</option>
-          <option value="38">38</option>
-          <option value="39">39</option>
-          <option value="40">40</option>
-          <option value="41">41</option>
-          <option value="42">42</option>
-          <option value="43">43</option>
-          <option value="44">44</option>
-          <option value="45">45</option>
-          <option value="46">46</option>
-          <option value="47">47</option>
-          <option value="48">48</option>
-          <option value="49">49</option>
-          <option value="50">50</option>
-          <option value="51">51</option>
-          <option value="52">52</option>
-          <option value="53">53</option>
-          <option value="54">54</option>
-          <option value="55">55</option>
-          <option value="56">56</option>
-          <option value="57">57</option>
-          <option value="58">58</option>
-          <option value="59">59</option>
-          <option value="60">60</option>
-          <option value="61">61</option>
-          <option value="62">62</option>
-          <option value="63">63</option>
-          <option value="64">64</option>
-          <option value="65">65</option>
-        </select>
-
-        <div class="buttonsCont">
-          <button type="button" class="btn registerBtn notInterested">
-            Quit
-          </button>
-          <button type="submit" class="btn registerBtn regSubmitBtn">
-            Login
-          </button>
+      <section class="registerShell" aria-labelledby="pageTitle">
+        <div class="brandPanel">
+          <a
+            class="brandMark"
+            href="../index.html"
+            aria-label="QuizVilla home"
+          >
+            <img src="../images/idea.png" alt="" />
+          </a>
+          <p class="eyebrow">THINK. PLAY. LEVEL UP.</p>
+          <h1 id="pageTitle">Welcome to <span>QuizVilla</span></h1>
+          <p class="brandDescription">
+            Every question is a new chance to challenge yourself,
+            collect rewards, and climb a little higher.
+          </p>
+          <div class="brandFooter">
+            <span class="brandLine"></span>
+            <span>Your next winning streak starts here.</span>
+          </div>
         </div>
-      </form>
-      <audio id="soundEffect">
+
+        <div class="formPanel">
+          <div class="formIntro">
+            <span class="stepLabel">LET'S GET YOU STARTED</span>
+            <h2 class="registerHeader noCopy">
+              Create your player profile
+            </h2>
+            <p>
+              Choose a username and tell us your age to get started.
+            </p>
+          </div>
+
+          <form class="formBody" id="registerForm">
+            <div class="fieldGroup">
+              <label for="username">Username</label>
+              <input
+                class="Username btn"
+                type="text"
+                required
+                minlength="2"
+                maxlength="24"
+                autocomplete="nickname"
+                placeholder="e.g. QuizMaster"
+                id="username"
+              />
+              <span class="fieldHint"
+                >This is how you'll appear in QuizVilla.</span
+              >
+            </div>
+
+            <div class="fieldGroup">
+              <label for="age">Age</label>
+              <div class="selectWrap">
+                <select id="age" class="btn" required>
+                  <option value="">Select your age</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                  <option value="60">60</option>
+                  <option value="61">61</option>
+                  <option value="62">62</option>
+                  <option value="63">63</option>
+                  <option value="64">64</option>
+                  <option value="65">65</option>
+                </select>
+                <span class="selectChevron" aria-hidden="true"
+                  >⌄</span
+                >
+              </div>
+            </div>
+
+            <div class="buttonsCont">
+              <button
+                type="button"
+                class="btn registerBtn notInterested"
+              >
+                Quit
+              </button>
+              <button
+                type="submit"
+                class="btn registerBtn regSubmitBtn"
+              >
+                <span>Enter QuizVilla</span>
+                <span class="buttonArrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </form>
+
+          <p class="formFootnote">
+            Your player details are saved on this device.
+          </p>
+        </div>
+      </section>
+
+      <audio id="soundEffect" preload="auto">
         <source src="../sounds/buttonClick.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-    </div>
+    </main>
     <script src="register.js"></script>
   </body>
 </html>

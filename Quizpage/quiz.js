@@ -6,7 +6,6 @@ const optionBoxes = document.querySelectorAll(".option");
 const backgroundChange = document.querySelectorAll(".backgroundChange");
 const hints = document.querySelectorAll(".hint");
 const timerShow = document.querySelector(".timer-show");
-const savedTheme = localStorage.getItem("theme") || "light";
 const questNumColors = document.querySelectorAll(".questionNum");
 const jubilationSound = document.querySelector(".jubilationSound");
 const optionsFlyInSound = new Audio("../sounds/hit.wav");
@@ -257,6 +256,7 @@ anotherQuestion.addEventListener("click", () => {
 });
 userProfile.addEventListener("click", () => {
   localStorage.setItem("hasAnswered", "true");
+  localStorage.setItem("editReturnPage", "Quizpage/quiz.html");
   setTimeout(() => {
     const lastPage = "Quizpage/quiz.html";
     localStorage.setItem("lastPage", lastPage);
@@ -1135,14 +1135,7 @@ function fiftyFifty() {
   fiftyFiftyBtn.style.opacity = "0.5";
   localStorage.setItem("fiftyFiftyUsed", "true");
 }
-const GameContainer = document.querySelector(".game-container");
-
-if (savedTheme === "dark") {
-  GameContainer.classList.add("dark");
-  storeBtns.forEach((storeBtn) => {
-    storeBtn.classList.add("storeBtnBackground");
-  });
-}
+storeBtns.forEach((storeBtn) => storeBtn.classList.add("storeBtnBackground"));
 
 const savedMusicState = localStorage.getItem("musicState") || "paused";
 

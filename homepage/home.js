@@ -16,21 +16,22 @@ const savedMusicState = localStorage.getItem("musicState") || "paused";
 const buttons = document.querySelectorAll(".btn");
 let soundState = localStorage.getItem("soundState") || "on";
 
-if (localStorage.getItem("showWelcome") === "true") {
-  if (!oldUser) {
-    setTimeout(() => {
-      userWelcomeMsg.classList.add("fly-in");
-    }, 500);
-    userWelcomeMsg.textContent = `Welcome ${savedUsername} 🖐🏼`;
-  } else {
-    setTimeout(() => {
-      userWelcomeMsg.classList.add("fly-in");
-    }, 500);
-    userWelcomeMsg.textContent = `Welcome Back ${savedUsername} 🖐🏼`;
-  }
+const shouldShowWelcome = localStorage.getItem("showWelcome") === "true";
+userWelcomeMsg.textContent = oldUser ? `Welcome back, ${savedUsername}` : `Welcome, ${savedUsername}`;
+if (shouldShowWelcome) {
+  setTimeout(() => userWelcomeMsg.classList.add("fly-in"), 180);
   localStorage.removeItem("showWelcome");
-} else {
-  userWelcomeMsg.textContent = "";
+}
+
+// Render only values already stored by the existing game; never invent player stats.
+const coinBalance = document.querySelector(".coin-balance");
+const heartBalance = document.querySelector(".heart-balance");
+const avatarImage = document.querySelector(".avatar-image");
+if (coinBalance) coinBalance.textContent = localStorage.getItem("coinCount") || "0";
+if (heartBalance) heartBalance.textContent = localStorage.getItem("heartNum") || "5";
+if (avatarImage) {
+  const savedProfileImage = localStorage.getItem("profileImage");
+  if (savedProfileImage) avatarImage.src = savedProfileImage;
 }
 
 shareBtn.addEventListener("click", (event) => {
@@ -49,9 +50,13 @@ shareBtn.addEventListener("click", (event) => {
       .catch((error) => console.log("Error sharing:", error));
   } else {
     // Fallback: copy link to clipboard
-    navigator.clipboard.writeText(shareData.url).then(() => {
-      alert("Quiz app link copied to clipboard! Share it with your friends.");
-    });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(shareData.url).then(() => {
+        alert("QuizVilla link copied to clipboard! Share it with your friends.");
+      }).catch(() => window.prompt("Copy your QuizVilla link:", shareData.url));
+    } else {
+      window.prompt("Copy your QuizVilla link:", shareData.url);
+    }
   }
 });
 
@@ -108,6 +113,17 @@ const playBtn = document.querySelector(".play");
 
 const footerIcons = document.querySelectorAll(".tooltip-box");
 
+// Profile links outside the footer use normal anchor navigation, so save their
+// source before the browser leaves this page.
+document
+  .querySelectorAll('.avatar-link, .quick-link[href="../EditPage/edit.html"]')
+  .forEach((profileLink) => {
+    profileLink.addEventListener("click", () => {
+      try { localStorage.setItem("editReturnPage", "homepage/home.html"); }
+      catch (_) { /* Edit Profile falls back to Home if storage is unavailable. */ }
+    });
+  });
+
 playBtn.addEventListener("click", () => {
   setTimeout(() => {
     window.location.href = base + "Quizpage/quiz.html";
@@ -135,7 +151,12 @@ yes.addEventListener("click", () => {
 });
 
 footerIcons.forEach((footerIcon) => {
-  footerIcon.addEventListener("click", () => {
+  footerIcon.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (footerIcon.classList.contains("profile")) {
+      try { localStorage.setItem("editReturnPage", "homepage/home.html"); }
+      catch (_) { /* Edit Profile falls back to Home if storage is unavailable. */ }
+    }
     setTimeout(() => {
       if (footerIcon.classList.contains("home")) {
         window.location.href = base + "homepage/home.html";
@@ -151,12 +172,21 @@ footerIcons.forEach((footerIcon) => {
     }, 200);
   });
 });
-const savedTheme = localStorage.getItem("theme") || "light";
 const homeBody = document.querySelector(".container");
-
-if (savedTheme === "dark") {
-  homeBody.classList.add("dark");
+function applyHomeTheme(theme) {
+  const activeTheme = theme === "dark" ? "dark" : "light";
+  document.documentElement.dataset.theme = activeTheme;
+  homeBody.classList.toggle("dark", activeTheme === "dark");
+  homeBody.classList.toggle("light", activeTheme === "light");
 }
+function readHomeTheme() {
+  try { return localStorage.getItem("theme"); }
+  catch (_) { return "light"; }
+}
+applyHomeTheme(readHomeTheme());
+window.addEventListener("storage", (event) => {
+  if (event.key === "theme" || event.key === null) applyHomeTheme(event.newValue);
+});
 
 if (savedMusicState === "playing") {
   backgroundMusic.play();

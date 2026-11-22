@@ -1,317 +1,449 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Store</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="../styles/theme.js"></script>
+    <meta name="theme-color" content="#0b1220" />
+    <title>Store | QuizVilla</title>
+    <link rel="icon" type="image/png" href="../images/idea.png" />
+
+    <link rel="stylesheet" href="../styles/design-system.css" />
     <link rel="stylesheet" href="store.css" />
+    <link rel="stylesheet" href="../styles/theme.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="store-header">
-        <div class="quit-btn">
+    <main class="container">
+      <header class="store-header">
+        <button
+          class="quit-btn btn"
+          type="button"
+          aria-label="Go back"
+        >
           <img src="../images/left.png" alt="" />
+        </button>
+        <a
+          class="brand-lockup"
+          href="../homepage/home.html"
+          aria-label="QuizVilla home"
+        >
+          <span class="brand-mark"
+            ><img src="../images/idea.png" alt=""
+          /></span>
+          <span class="brand-copy"
+            ><span class="brand-name">QuizVilla</span
+            ><span class="brand-tagline">GAME STORE</span></span
+          >
+        </a>
+        <div class="header-balances" aria-label="Your balances">
+          <div
+            class="coins storeBtn balance-pill"
+            aria-label="Coin balance"
+            aria-live="polite"
+          >
+            <span class="coin-icon"
+              ><img src="../images/coin.png" alt="" /></span
+            ><span class="balance-label">Coins</span
+            ><span class="coin-num coin-num1 noCopy">0</span>
+            <span
+              class="coinMax-cont max-indicator"
+              aria-label="Maximum coin balance"
+              ><img src="../images/arrow-up.png" alt=""
+            /></span>
+          </div>
+          <div
+            class="heart storeBtn balance-pill"
+            aria-label="Heart balance"
+            aria-live="polite"
+          >
+            <span class="heart-icon"
+              ><img src="../images/heart.png" alt="" /></span
+            ><span class="balance-label">Hearts</span
+            ><span class="heartnum coin-num1 noCopy">5</span>
+            <span
+              class="heart-text heartMax-cont max-indicator"
+              aria-label="Maximum heart balance"
+              ><img src="../images/arrow-up.png" alt=""
+            /></span>
+          </div>
+          <div
+            class="hint-balance balance-pill"
+            aria-label="Unused hint count"
+            aria-live="polite"
+          >
+            <span class="hint-icon"
+              ><img src="../images/hint.png" alt="" /></span
+            ><span class="balance-label">Hints</span
+            ><span class="hintnum">3</span>
+          </div>
         </div>
-        <div class="header">
-          <div class="coins storeBtn">
-            <div class="coin-icon">
-              <img src="../images/coin.png" alt="" />
-            </div>
-            <div class="coin-num coin-num1 noCopy">100</div>
-            <div class="coinMax-cont">
-              <img src="../images/arrow-up.png" alt="">
-            </div>
-            <div class="coins-btn">
-              <img src="../images/add.png" alt="" height="40" />
-            </div>
-          </div>
-          <div class="heart storeBtn">
-            <div class="heart-icon">
-              <img src="../images/heart.png" alt="" height="20" width="20" />
-            </div>
-            <div class="heartnum coin-num1 noCopy">1</div>
-            <div class="heart-text heartMax-cont">
-              <img src="../images/arrow-up.png" alt="">
-            </div>
-            <div class="heart-btn">
-              <img src="../images/add.png" alt="" height="40" />
-            </div>
-          </div>
-          
+        <button
+          class="share invite btn"
+          type="button"
+          aria-label="Share QuizVilla"
+        >
+          <img src="../images/share.png" alt="" class="invite-img" />
+        </button>
+      </header>
+
+      <section class="store-intro" aria-labelledby="store-title">
+        <div>
+          <span class="eyebrow">THE VILLA EXCHANGE</span>
+          <h1 id="store-title">Power up your play.</h1>
+          <p>Trade, earn, and stock up for your next challenge.</p>
         </div>
-        <div class="share  invite btn">
-          <img src="../images/share.png" alt="share button" class="invite-img">
-          
-        </div>
-      </div>
-      <div class="storeDescription">
-        <div class="item noCopy">Items</div>
-        <div class="Price noCopy">Price</div>
-      </div>
+        <span class="intro-art" aria-hidden="true">✦</span>
+      </section>
 
-      <div class="store-main">
-        <div class="coins-showcase">
-          <div class="coin-header noCopy">
-            Coins
-            <img src="../images/coins.png" alt="" />
+      <section class="store-main" aria-label="Store items">
+        <section
+          class="resource-section coins-showcase"
+          aria-labelledby="coins-title"
+        >
+          <div class="section-heading coin-header noCopy">
+            <span
+              ><span class="section-kicker">01 / CURRENCY</span
+              ><strong id="coins-title">Coins</strong></span
+            ><img src="../images/coins.png" alt="" />
           </div>
-         
-
-          <div
-            id="few-coinsAdBtn"
-            class="div-item getCoins noCopy btn watch-ad watchAd lives-option"
-          >
-            <img
-              src="../images/watch-movie (1).png"
-              class="lives-img ad-img"
-              alt=""
-            />
-            <div class="lives-desc">
-              <div class="lives-desc-header">Fair few coins</div>
-              <div class="lives-desc-txt coin-num">
-                <img src="../images/coin.png" height="20" alt="" />
-                200 per view
-              </div>
-            </div>
-            <div class="price watch-ad-price lives-price">
-              <img src="../images/watch-movie (1).png" height="20px" alt="" />
-              <div class="ad-txt">WATCH ADS</div>
-            </div>
-          </div>
-
-          <div
-            class="div-item noCopy heartBtn getCoins btn handful showcase coins-option"
-          >
-            <img
-              src="../images/coins.png"
-              class="coins-img handful-img"
-              alt=""
-            />
-            <div class="coin-desc">
-              <div class="coin-desc-header">Handful coins</div>
-              <div class="coin-num">
-                <img src="../images/coin.png" height="20" alt="" />
-                1000
-              </div>
-            </div>
-            <div class="price coins-price">
-              <img
-                src="../images/heart.png"
-                class="lives-img oneLife-img"
-                alt=""
-              />
-              <span class="coin-heartNum-opt">+1</span>
-            </div>
-          </div>
-
-          <div
-            class="div-item noCopy heartBtn getCoins btn heap showcase coins-option"
-          >
-            <img
-              src="../images/coins (1).png"
-              class="coins-img heap-img"
-              alt=""
-            />
-            <div class="coin-desc">
-              <div class="coin-desc-header">Heap of coins</div>
-              <div class="coin-num">
-                <img src="../images/coin.png" height="20" alt="" />
-                5000
-              </div>
-            </div>
-            <div class="price coins-price">
-              <img
-                src="../images/heart.png"
-                class="lives-img fullives-img"
-                alt=""
-              />
-              <span class="coin-heartNum-opt">
-                <img src="../images/arrow-up.png" height="16" alt="" />
-              </span>
-            </div>
-          </div>
-
-         
-        </div>
-
-
-
-        <div class="hints-showcase">
-          <div class="hints-header noCopy">
-            Hints & Time
-            <img src="../images/hint.png" alt="" />
-          </div>
-
-          <div
-            id="allHintsAdBtn"
-            class="div-item btn noCopy watch-ad getAHintBtn watchAd lives-option"
-          >
-            <img
-              src="../images/watch-movie (1).png"
-              class="lives-img ad-img"
-              alt=""
-            />
-            <div class="lives-desc">
-              <div class="lives-desc-header">Get a hint</div>
-            </div>
-            <div class="price watch-ad-price lives-price">
-              <img src="../images/watch-movie (1).png" height="16px" alt="" />
-              <div class="ad-txt">WATCH ADS</div>
-            </div>
-          </div>
-
-          <div
-            id="getAHintCoin"
-            class="div-item noCopy btn getAHintBtn showcase hint-option"
-          >
-            <img
-              src="../images/number-1.png"
-              class="hints-img all-hints-img"
-              alt=""
-            />
-            <div class="hints-desc all-hints-desc">Get A hint</div>
-            <div class="price hints-price">
-              <img src="../images/coin.png" height="20" alt="" />
-              1000
-            </div>
-          </div>
-
-          <div
-            id="allHintsCoin"
-            class="div-item btn noCopy all-hints showcase hint-option"
-          >
-            <img
-              src="../images/all.png"
-              class="hints-img all-hints-img"
-              alt=""
-            />
-            <div class="hints-desc all-hints-desc">All hints</div>
-            <div class="price hints-price">
-              <img src="../images/coin.png" height="20" alt="" />
-              3000
-            </div>
-          </div>
-
-          <div
-            id="ansTimeCoin"
-            class="div-item noCopy btn ans-time showcase hint-option"
-          >
-            <img
-              src="../images/clock.png"
-              class="hints-img ans-time-img"
-              alt=""
-            />
-            <div class="hints-desc">
-              <div class="hints-desc-header">Pause Answertime</div>
-              <div class="hints-desc-txt">5X per game</div>
-            </div>
-            <div class="price hints-price">
-              <img src="../images/coin.png" height="20" alt="" />
-              3000
-            </div>
-          </div>
-         
-
-        
-        <div class="adModal">
-          <div class="ad-contents">
+          <div class="product-grid">
             <button
-              class="close-modal btn"
-              id="cancel-ad-btn"
-              style="display: none"
+              id="few-coinsAdBtn"
+              class="product-card getCoins noCopy btn watch-ad watchAd lives-option"
+              type="button"
+              aria-label="Watch an ad to earn 200 coins"
             >
-              &times;
+              <span class="product-art ad-art"
+                ><img
+                  src="../images/watch-movie (1).png"
+                  class="lives-img ad-img"
+                  alt="" /></span
+              ><span class="product-copy lives-desc"
+                ><span class="product-title lives-desc-header"
+                  >A few coins</span
+                ><span class="product-detail lives-desc-txt"
+                  ><img src="../images/coin.png" alt="" />200 per
+                  view</span
+                ></span
+              ><span class="price watch-ad-price lives-price"
+                ><img
+                  src="../images/watch-movie (1).png"
+                  alt=""
+                /><span class="ad-txt">WATCH AD</span></span
+              >
             </button>
-            <video id="ad-video" autoplay></video>
+            <button
+              class="product-card getCoins btn handful showcase coins-option"
+              type="button"
+              aria-label="Trade one heart for 1,000 coins"
+            >
+              <span class="product-art coin-art"
+                ><img
+                  src="../images/coins.png"
+                  class="coins-img handful-img"
+                  alt="" /></span
+              ><span class="product-copy coin-desc"
+                ><span class="product-title coin-desc-header"
+                  >Handful of coins</span
+                ><span class="product-detail coin-num"
+                  ><img src="../images/coin.png" alt="" />1,000</span
+                ></span
+              ><span class="price coins-price"
+                ><img src="../images/heart.png" alt="" /><span
+                  class="coin-heartNum-opt"
+                  >−1</span
+                ></span
+              >
+            </button>
+            <button
+              class="product-card getCoins btn heap showcase coins-option"
+              type="button"
+              aria-label="Trade five hearts for 5,000 coins"
+            >
+              <span class="product-art coin-art"
+                ><img
+                  src="../images/coins (1).png"
+                  class="coins-img heap-img"
+                  alt="" /></span
+              ><span class="product-copy coin-desc"
+                ><span class="product-title coin-desc-header"
+                  >Heap of coins</span
+                ><span class="product-detail coin-num"
+                  ><img src="../images/coin.png" alt="" />5,000</span
+                ></span
+              ><span class="price coins-price"
+                ><img src="../images/heart.png" alt="" /><span
+                  class="coin-heartNum-opt"
+                  >−5</span
+                ></span
+              >
+            </button>
+          </div>
+        </section>
 
-            <div id="play-pause-overlay">
+        <section
+          class="resource-section hints-showcase"
+          aria-labelledby="hints-title"
+        >
+          <div class="section-heading hints-header noCopy">
+            <span
+              ><span class="section-kicker">02 / ADVANTAGE</span
+              ><strong id="hints-title"
+                >Hints &amp; time</strong
+              ></span
+            ><img src="../images/hint.png" alt="" />
+          </div>
+          <div class="product-grid">
+            <button
+              id="allHintsAdBtn"
+              class="product-card btn watch-ad getAHintBtn watchAd lives-option"
+              type="button"
+              aria-label="Watch an ad to unlock one hint"
+            >
+              <span class="product-art ad-art"
+                ><img
+                  src="../images/watch-movie (1).png"
+                  class="lives-img ad-img"
+                  alt="" /></span
+              ><span class="product-copy lives-desc"
+                ><span class="product-title lives-desc-header"
+                  >Earn a hint</span
+                ><span class="product-detail"
+                  >Choose one after watching.</span
+                ></span
+              ><span class="price watch-ad-price lives-price"
+                ><img
+                  src="../images/watch-movie (1).png"
+                  alt=""
+                /><span class="ad-txt">WATCH AD</span></span
+              >
+            </button>
+            <button
+              id="getAHintCoin"
+              class="product-card btn getAHintBtn showcase hint-option"
+              type="button"
+              aria-label="Choose one hint for 1,000 coins"
+            >
+              <span class="product-art hint-art"
+                ><img
+                  src="../images/number-1.png"
+                  class="hints-img all-hints-img"
+                  alt="" /></span
+              ><span class="product-copy hints-desc all-hints-desc"
+                ><span class="product-title">One hint</span
+                ><span class="product-detail"
+                  >Choose the boost you need.</span
+                ></span
+              ><span class="price hints-price"
+                ><img src="../images/coin.png" alt="" />1,000</span
+              >
+            </button>
+            <button
+              id="allHintsCoin"
+              class="product-card btn all-hints showcase hint-option"
+              type="button"
+              aria-label="Unlock all three hints for 3,000 coins"
+            >
+              <span class="product-art hint-art"
+                ><img
+                  src="../images/all.png"
+                  class="hints-img all-hints-img"
+                  alt="" /></span
+              ><span class="product-copy hints-desc all-hints-desc"
+                ><span class="product-title">Hint set</span
+                ><span class="product-detail"
+                  >Fifty-Fifty, Expert, and Another Question.</span
+                ></span
+              ><span class="price hints-price"
+                ><img src="../images/coin.png" alt="" />3,000</span
+              >
+            </button>
+            <button
+              id="ansTimeCoin"
+              class="product-card btn ans-time showcase hint-option"
+              type="button"
+              aria-label="Unlock five timer pauses for 3,000 coins"
+            >
+              <span class="product-art hint-art"
+                ><img
+                  src="../images/clock.png"
+                  class="hints-img ans-time-img"
+                  alt="" /></span
+              ><span class="product-copy hints-desc"
+                ><span class="product-title hints-desc-header"
+                  >Extra time</span
+                ><span class="product-detail hints-desc-txt"
+                  >5 pauses this game</span
+                ></span
+              ><span class="price hints-price"
+                ><img src="../images/coin.png" alt="" />3,000</span
+              >
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <nav class="footer" aria-label="Main navigation">
+        <a class="home tooltip-box btn" href="../homepage/home.html"
+          ><img
+            class="footer-btn"
+            src="../images/home (1).png"
+            alt=""
+          /><span class="tooltip">Home</span></a
+        >
+        <a
+          class="profile tooltip-box btn"
+          href="../EditPage/edit.html"
+          ><img
+            class="footer-btn"
+            src="../images/user.png"
+            alt=""
+          /><span class="tooltip">Profile</span></a
+        >
+        <a
+          class="setting-icon tooltip-box btn"
+          href="../SettingsPage/setting.html"
+          ><img
+            class="footer-btn"
+            src="../images/settings.png"
+            alt=""
+          /><span class="tooltip">Settings</span></a
+        >
+        <a
+          class="store tooltip-box btn"
+          href="../StorePage/store.html"
+          aria-current="page"
+          ><img
+            class="footer-btn"
+            src="../images/grocery-store.png"
+            alt=""
+          /><span class="tooltip">Store</span></a
+        >
+      </nav>
+
+      <section
+        class="adModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ad-title"
+        aria-hidden="true"
+      >
+        <div class="ad-contents">
+          <button
+            class="close-modal btn"
+            id="cancel-ad-btn"
+            type="button"
+            aria-label="Close advertisement"
+          >
+            &times;
+          </button>
+          <div class="ad-heading">
+            <span class="eyebrow">REWARD VIDEO</span>
+            <h2 id="ad-title">Watch to unlock your reward</h2>
+            <p class="ad-status">Stay for 40 seconds to continue.</p>
+          </div>
+          <div class="video-frame">
+            <video id="ad-video" playsinline></video
+            ><button
+              id="play-pause-overlay"
+              type="button"
+              aria-label="Pause advertisement"
+            >
               <img
                 class="playPauseIcon"
                 src="../images/video-pause-button.png"
                 alt=""
               />
-            </div>
-            <div class="video-timer">
-              <span id="currentTime">0:00</span>
-              <input
-                type="range"
-                name=""
-                id="progressBar"
-                value="0"
-                min="0"
-                max="100"
-                step="0.1"
-              />
-              <span id="totalDuration">0:00</span>
-            </div>
-            <div class="modal-footer">Tap to Continue</div>
+            </button>
+          </div>
+          <div class="video-timer">
+            <span id="currentTime">0:00</span
+            ><input
+              type="range"
+              id="progressBar"
+              value="0"
+              min="0"
+              max="40"
+              step="1"
+              aria-label="Ad watch progress"
+              disabled
+            /><span id="totalDuration">0:40</span>
+          </div>
+          <button class="modal-footer btn" type="button" disabled>
+            Continue to reward
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="getAHintModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="hint-dialog-title"
+        aria-hidden="true"
+      >
+        <div class="getAHintModalCont">
+          <button
+            class="modalCloseBtn btn"
+            type="button"
+            aria-label="Close hint selection"
+          >
+            &times;
+          </button>
+          <div class="modal-content">
+            <span class="modal-emblem"
+              ><img src="../images/idea.png" alt="" /></span
+            ><span class="eyebrow">CHOOSE YOUR BOOST</span>
+            <h2 id="hint-dialog-title" class="modal-text">
+              Select a hint
+            </h2>
+            <button
+              class="hintModalOption fifty-fifty noCopy btn"
+              type="button"
+            >
+              <span class="hintOptionText fiftyPercentText"
+                >Fifty-Fifty</span
+              ><span class="hintImage fiftyHint">50%</span>
+            </button>
+            <button
+              class="hintModalOption expertAns noCopy btn"
+              type="button"
+            >
+              <span class="hintOptionText expertAnsText"
+                >Expert Answer</span
+              ><span class="hintImage"
+                ><img src="../images/user.png" alt=""
+              /></span>
+            </button>
+            <button
+              class="hintModalOption anotherQuestion noCopy btn"
+              type="button"
+            >
+              <span class="hintOptionText anotherQuestionText"
+                >Another Question</span
+              ><span class="hintImage"
+                ><img src="../images/undo.png" alt=""
+              /></span>
+            </button>
           </div>
         </div>
-        <audio id="backgroundMusic" loop>
-          <source
-            src="../sounds/alan_walker.mp3"
-            type="audio/mpeg"
-          />
-          Your browser does not support the audio element.
-        </audio>
+      </section>
 
-        <audio id="soundEffect">
-          <source src="../sounds/buttonClick.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-
-        <div class="getAHintModal">
-          <div class="getAHintModalCont">
-            <div class="modalCloseBtn btn">&times;</div>
-            <div class="modal-content">
-              <img src="../images/idea.png" alt="" height="100" />
-              <div class="modal-text">Choose A Hint</div>
-
-              <div class="hintModalOption fifty-fifty noCopy btn">
-                <div class="hintOptionText fiftyPercentText">Fifty-Fifty</div>
-                <div class="hintImage fiftyHint">50%</div>
-              </div>
-              <div class="hintModalOption expertAns noCopy btn">
-                <div class="hintOptionText expertAnsText">Expert Answer</div>
-                <div class="hintImage">
-                  <img src="../images/user.png" alt="" />
-                </div>
-              </div>
-              <div class="hintModalOption anotherQuestion noCopy btn">
-                <div class="hintOptionText anotherQuestionText">
-                  Another Question
-                </div>
-                <div class="hintImage">
-                  <img src="../images/undo.png" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer">
-          <div class="home tooltip-box btn">
-            <img class="footer-btn" src="../images/home (1).png" alt="" />
-            <div class="tooltip">home</div>
-          </div>
-
-          <div class="profile tooltip-box btn">
-            <img class="footer-btn" src="../images/user.png" alt="" />
-            <div class="tooltip">profile</div>
-          </div>
-
-          <div class="setting-icon tooltip-box btn">
-            <img class="footer-btn" src="../images/settings.png" alt="" />
-            <div class="tooltip">setting</div>
-          </div>
-
-          <div class="store tooltip-box btn">
-            <img class="footer-btn" src="../images/grocery-store.png" alt="" />
-            <div class="tooltip">store</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+      <audio id="backgroundMusic" loop preload="metadata">
+        <source src="../sounds/alan_walker.mp3" type="audio/mpeg" />
+      </audio>
+      <audio id="soundEffect" preload="auto">
+        <source src="../sounds/buttonClick.mp3" type="audio/mpeg" />
+      </audio>
+      <div
+        class="store-feedback"
+        role="status"
+        aria-live="polite"
+      ></div>
+    </main>
     <script src="store.js"></script>
   </body>
 </html>

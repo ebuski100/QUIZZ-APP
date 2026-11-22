@@ -1,156 +1,224 @@
-const modal = document.getElementById("myModal");
+(() => {
+  "use strict";
 
-const ageSelect = document.getElementById("Age");
-const lastPage = localStorage.getItem("lastPage");
-const bannerBtn = document.querySelector(".banner-edit-btn");
-const submitBtn = document.querySelector(".button-cont");
-// const profileBtn = document.querySelector(".edit-img-btn");
-// console.log(profileBtn);
-const closePicsBtn = document.getElementById("close-pics-modal");
+  const $ = (selector) => document.querySelector(selector);
+  const modal = $("#myModal");
+  const ageSelect = $("#Age");
+  const genderSelect = $("#gender");
+  const bannerBtn = $(".banner-edit-btn");
+  const submitBtn = $(".submit");
+  const closePicsBtn = $("#close-pics-modal");
+  const backdropBtn = $("#modal-backdrop");
+  const chooseAvatarBtn = $(".choose-avatar");
+  const usernameInput = $(".usernameInput");
+  const profileGalleryInput = $("#profileGalleryInput");
+  const editQuitBtn = $(".editQuitBtn");
+  const img = $("#chosen-image");
+  const profileGallery = $(".profileGallery");
+  const removeProfileBtn = $(".remove-profile-btn");
+  const profileCameraBtn = $("#profile-camera-btn");
+  const formMessage = $("#form-message");
+  const backgroundMusic = $("#backgroundMusic");
+  const soundEffect = $("#soundEffect");
 
-const chooseAvatarBtn = document.querySelector(".choose-avatar");
-const modalFooter = document.querySelector(".modal-footer");
-const usernameInput = document.querySelector(".usernameInput");
-const savedUsername = localStorage.getItem("username") || "player";
-const savedAge = localStorage.getItem("age");
-const profileGalleryInput = document.getElementById("profileGalleryInput");
-const editQuitBtn = document.querySelector(".editQuitBtn");
+  const isGithubPages =
+    window.location.hostname.includes("github.io");
+  const base = isGithubPages ? "/QUIZZ-APP/" : "../";
+  const editReturnKey = "editReturnPage";
+  const editPagePath = "EditPage/edit.html";
+  const savedUsername = localStorage.getItem("username") || "player";
+  const savedAge = localStorage.getItem("age") || "";
+  const savedGender = localStorage.getItem("gender") || "";
+  const defaultImage = "../images/user (5).png";
 
-const profile_Image = document.querySelector(".image-avatar");
+  function normalizeReturnPage(candidate) {
+    if (typeof candidate !== "string" || !candidate.trim()) return null;
+    let destination = candidate.trim().replace(/^\/+/, "");
+    if (destination.startsWith("QUIZZ-APP/")) {
+      destination = destination.slice("QUIZZ-APP/".length);
+    }
+    if (
+      /[:\\?#]/.test(destination) ||
+      destination.split("/").some((part) => !part || part === "." || part === "..") ||
+      !destination.endsWith(".html") ||
+      destination.toLowerCase() === editPagePath.toLowerCase()
+    ) return null;
+    return destination;
+  }
 
-const img = document.getElementById("chosen-image");
+  // `lastPage` is also used by Settings and may contain Edit itself after an
+  // Avatar/Camera detour. Prefer the dedicated profile return path and reject
+  // self-routes so old/stale values cannot reload this page in a loop.
+  const editReturnPage =
+    normalizeReturnPage(localStorage.getItem(editReturnKey)) ||
+    normalizeReturnPage(localStorage.getItem("lastPage")) ||
+    "homepage/home.html";
+  localStorage.setItem(editReturnKey, editReturnPage);
 
-const profileGallery = document.querySelector(".profileGallery");
-
-const removeProfileBtn = document.querySelector(".remove-profile-btn");
-
-const oldUser = localStorage.getItem("oldUser");
-const profileCameraBtn = document.getElementById("profile-camera-btn");
-
-const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/QUIZZ-APP/" : "../";
-
-profileCameraBtn.addEventListener("click", () => {
-  localStorage.setItem("captureMode", "profileImage");
-  setTimeout(() => {
-    window.location.href = base + "photoCapture/camera.html";
-  }, 200);
-});
-
-removeProfileBtn.addEventListener("click", () => {
-  localStorage.removeItem("profileImage");
-  img.src = "../images/user (5).png";
-  modal.style.display = "none";
-});
-
-editQuitBtn.addEventListener("click", () => {
-  setTimeout(() => {
-    window.location.href = base + lastPage;
-  }, 200);
-});
-if (usernameInput) {
   usernameInput.value = savedUsername;
-}
-
-if (Age) {
   ageSelect.value = savedAge;
-}
+  genderSelect.value = savedGender;
 
-modalFooter.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+  const savedImage = localStorage.getItem("profileImage");
+  if (savedImage) img.src = savedImage;
+  else img.src = defaultImage;
 
-bannerBtn.addEventListener("click", () => {
-  modal.style.display = "block";
-});
-
-closePicsBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-profileGallery.addEventListener("click", () => {
-  profileGalleryInput.click();
-});
-
-const image = localStorage.getItem("profileImage");
-if (image) {
-  img.src = image;
-}
-
-chooseAvatarBtn.addEventListener("click", () => {
-  setTimeout(() => {
-    window.location.href = base + "Avatar/avatar.html";
-  }, 200);
-});
-submitBtn.addEventListener("click", () => {
-  const username = usernameInput.value.trim();
-
-  const selectedAge = ageSelect.value;
-
-  localStorage.setItem("age", selectedAge);
-  localStorage.setItem("username", username);
-  localStorage.setItem("oldUser", "true");
-  setTimeout(() => {
-    window.location.href = base + lastPage;
-  }, 200);
-});
-
-profileGalleryInput.addEventListener("change", (event) => {
-  const files = event.target.files;
-  if (files.length > 0) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const imageData = e.target.result;
-      img.src = imageData;
-      localStorage.setItem("profileImage", imageData);
-    };
-    modal.style.display = "none";
-    reader.readAsDataURL(files[0]);
+  function playClick() {
+    try {
+      if (localStorage.getItem("soundState") !== "off" && soundEffect) {
+        soundEffect.currentTime = 0;
+        const playback = soundEffect.play();
+        if (playback && typeof playback.catch === "function") playback.catch(() => {});
+      }
+    } catch (_) { /* Audio or storage errors must not block navigation. */ }
   }
-});
 
-const savedTheme = localStorage.getItem("theme") || "light";
-const editContainer = document.querySelector(".edit-container");
-if (savedTheme === "dark") {
-  editContainer.classList.add("dark");
-  document.body.classList.add("bodyColor");
-}
-
-const savedMusicState = localStorage.getItem("musicState") || "paused";
-
-if (savedMusicState === "playing") {
-  backgroundMusic.play();
-} else {
-  backgroundMusic.pause();
-}
-
-document.addEventListener("visibilitychange", () => {
-  if (savedMusicState === "playing") {
-    if (document.hidden) {
-      backgroundMusic.pause();
-    } else {
-      backgroundMusic.play();
-    }
-  } else {
-    backgroundMusic.pause();
+  function openModal() {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    closePicsBtn.focus();
   }
-});
 
-const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
-backgroundMusic.currentTime = savedMusicTime;
-backgroundMusic.addEventListener("timeupdate", () => {
-  localStorage.setItem("musicTime", backgroundMusic.currentTime);
-});
-const buttons = document.querySelectorAll(".btn");
-let soundState = localStorage.getItem("soundState") || "on";
+  function closeModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    bannerBtn.focus();
+  }
 
-const soundEffect = document.getElementById("soundEffect");
-buttons.forEach((button) => {
-  console.log(soundState);
-  button.addEventListener("click", () => {
-    if (soundState === "on") {
-      soundEffect.currentTime = 0;
-      soundEffect.play();
-    }
+  bannerBtn.addEventListener("click", () => {
+    playClick();
+    openModal();
   });
-});
+  closePicsBtn.addEventListener("click", () => {
+    playClick();
+    closeModal();
+  });
+  backdropBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("is-open"))
+      closeModal();
+  });
+
+  chooseAvatarBtn.addEventListener("click", () => {
+    playClick();
+    window.location.href = base + "Avatar/avatar.html";
+  });
+
+  profileCameraBtn.addEventListener("click", () => {
+    playClick();
+    localStorage.setItem("captureMode", "profileImage");
+    localStorage.setItem("lastPage", "EditPage/edit.html");
+    window.location.href = base + "photoCapture/camera.html";
+  });
+
+  profileGallery.addEventListener("click", () => {
+    playClick();
+    profileGalleryInput.click();
+  });
+
+  profileGalleryInput.addEventListener("change", (event) => {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      formMessage.textContent = "Please choose a valid image file.";
+      profileGalleryInput.value = "";
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (loadEvent) => {
+      const imageData = loadEvent.target.result;
+      img.src = imageData;
+      try {
+        localStorage.setItem("profileImage", imageData);
+        formMessage.textContent = "Profile picture updated.";
+      } catch (error) {
+        formMessage.textContent =
+          "This image is too large to save in browser storage. Try a smaller image.";
+      }
+      closeModal();
+    };
+    reader.onerror = () => {
+      formMessage.textContent =
+        "The selected image could not be opened.";
+    };
+    reader.readAsDataURL(file);
+    profileGalleryInput.value = "";
+  });
+
+  removeProfileBtn.addEventListener("click", () => {
+    playClick();
+    localStorage.removeItem("profileImage");
+    img.src = defaultImage;
+    closeModal();
+    formMessage.textContent = "Profile picture removed.";
+  });
+
+  function returnToPreviousPage() {
+    window.location.href = base + editReturnPage;
+  }
+  editQuitBtn.addEventListener("click", () => {
+    playClick();
+    returnToPreviousPage();
+  });
+
+  $(".setting-icon")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    playClick();
+    localStorage.setItem("lastPage", "EditPage/edit.html");
+    window.location.href = base + "SettingsPage/setting.html";
+  });
+
+  submitBtn.addEventListener("click", () => {
+    playClick();
+    const username = usernameInput.value.trim();
+    if (!username) {
+      formMessage.textContent =
+        "Please enter a username before saving.";
+      usernameInput.focus();
+      return;
+    }
+    localStorage.setItem("age", ageSelect.value);
+    localStorage.setItem("username", username);
+    localStorage.setItem("gender", genderSelect.value);
+    localStorage.setItem("oldUser", "true");
+    formMessage.textContent = "Your profile has been saved.";
+    window.setTimeout(returnToPreviousPage, 250);
+  });
+
+  const savedMusicState =
+    localStorage.getItem("musicState") || "paused";
+  const savedMusicTime =
+    Number.parseFloat(localStorage.getItem("musicTime")) || 0;
+  if (backgroundMusic) {
+    backgroundMusic.addEventListener("loadedmetadata", () => {
+      try {
+        backgroundMusic.currentTime = savedMusicTime;
+      } catch (_) {}
+    });
+    if (backgroundMusic.readyState >= 1) {
+      try {
+        backgroundMusic.currentTime = savedMusicTime;
+      } catch (_) {}
+    }
+    const resumeMusic = () => {
+      if (savedMusicState === "playing" && !document.hidden) {
+        const playback = backgroundMusic.play();
+        if (playback && typeof playback.catch === "function")
+          playback.catch(() => {});
+      } else {
+        backgroundMusic.pause();
+      }
+    };
+    resumeMusic();
+    document.addEventListener("visibilitychange", resumeMusic);
+    backgroundMusic.addEventListener("timeupdate", () => {
+      localStorage.setItem(
+        "musicTime",
+        String(backgroundMusic.currentTime),
+      );
+    });
+  }
+})();

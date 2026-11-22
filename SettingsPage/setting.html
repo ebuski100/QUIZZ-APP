@@ -1,74 +1,180 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Setting</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="../styles/theme.js"></script>
+    <meta name="theme-color" content="#0b1220" />
+    <title>Settings | QuizVilla</title>
+    <link rel="stylesheet" href="../styles/design-system.css" />
+    <link rel="icon" type="image/png" href="../images/idea.png" />
     <link rel="stylesheet" href="setting.css" />
+    <link rel="stylesheet" href="../styles/theme.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="setting-heading">
-        <div class="setting-logo">
-          <img
-            src="../images/idea.png"
-            height="90"
-            width="90"
-            alt=""
-            margin="auto"
-          />
-        </div>
-        <div class="setting-title">QuizVilla</div>
-        <div class="setting-text">
-          Settings
-          <span class="setting-icon">
-            <img src="../images/settings.png" alt="" />
-          </span>
-        </div>
-      </div>
-      <div class="setting-options">
-        <select class="btn option-item item1" name="Difficulty" id="Difficulty">
-          <option value="easy">easy</option>
-          <option value="medium">medium</option>
-          <option value="hard">hard</option>
-        </select>
+    <main class="settings-shell">
+      <header class="settings-header">
+        <a
+          class="brand-lockup"
+          href="../homepage/home.html"
+          aria-label="QuizVilla home"
+        >
+          <span class="brand-mark"
+            ><img src="../images/idea.png" alt=""
+          /></span>
+          <span class="brand-copy"
+            ><span class="brand-name">QuizVilla</span
+            ><span class="brand-tagline"
+              >PLAY • LEARN • WIN</span
+            ></span
+          >
+        </a>
+        <span class="header-note">YOUR GAME, YOUR RULES</span>
+      </header>
 
-        <div class="btn option-item item2">
-          theme
-          <span class="theme">
-            <img class="themeIcon" src="../images/night-mode.png" alt="" />
-          </span>
+      <section class="settings-content" aria-labelledby="page-title">
+        <div class="page-intro">
+          <span class="eyebrow">PREFERENCES</span>
+          <h1 id="page-title">Settings</h1>
+          <p>
+            Fine-tune your quiz experience before your next round.
+          </p>
         </div>
-        <div class="btn option-item item3">
-          sound
-          <span class="sound">
-            <img src="../images/volume.png" alt="" />
-          </span>
-        </div>
-        <div class="btn option-item item4">
-          Music
-          <span class="music">
-            <img
-              class="background-music-icon"
-              src="../images/mute.png"
-              alt=""
-            />
-          </span>
-        </div>
-      </div>
-      <audio id="backgroundMusic" loop>
-        <source src="../sounds/alan_walker.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-      <audio id="soundEffect">
-        <source src="../sounds/buttonClick.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-      <div id="okBtn" class="btn button-cont">
-        <button class="ok">OK</button>
-      </div>
-    </div>
 
+        <div class="settings-panel">
+          <div class="panel-heading">
+            <span class="panel-icon"
+              ><img src="../images/settings.png" alt=""
+            /></span>
+            <div>
+              <h2>Game preferences</h2>
+              <p>Your choices are saved automatically.</p>
+            </div>
+          </div>
+
+          <div class="settings-list">
+            <div class="setting-row">
+              <label for="Difficulty" class="setting-copy"
+                ><span class="setting-name">Quiz difficulty</span
+                ><span class="setting-description"
+                  >Choose the challenge level for your quizzes.</span
+                ></label
+              >
+              <select
+                class="setting-select"
+                name="Difficulty"
+                id="Difficulty"
+              >
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <span class="setting-name">Display theme</span
+                ><span class="setting-description"
+                  >Choose a comfortable look for the game.</span
+                >
+              </div>
+              <div
+                class="segmented-control"
+                role="group"
+                aria-label="Display theme"
+              >
+                <button
+                  class="theme-choice"
+                  type="button"
+                  data-theme="light"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">☀</span> Light
+                </button>
+                <button
+                  class="theme-choice"
+                  type="button"
+                  data-theme="dark"
+                  aria-pressed="false"
+                >
+                  <span aria-hidden="true">☾</span> Dark
+                </button>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <span class="setting-name">Sound effects</span
+                ><span class="setting-description"
+                  >Button sounds and in-game feedback.</span
+                >
+              </div>
+              <button
+                class="state-control"
+                id="soundToggle"
+                type="button"
+                aria-pressed="true"
+                aria-label="Turn sound effects off"
+              >
+                <span class="state-icon"
+                  ><img src="../images/volume.png" alt="" /></span
+                ><span class="state-label">On</span
+                ><span class="switch" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-copy">
+                <span class="setting-name">Background music</span
+                ><span class="setting-description"
+                  >Play the QuizVilla soundtrack while you
+                  browse.</span
+                >
+              </div>
+              <button
+                class="state-control"
+                id="musicToggle"
+                type="button"
+                aria-pressed="false"
+                aria-label="Turn background music on"
+              >
+                <span class="state-icon"
+                  ><img src="../images/mute.png" alt="" /></span
+                ><span class="state-label">Off</span
+                ><span class="switch" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+
+          <footer class="panel-footer">
+            <span class="save-note"
+              ><span class="save-dot" aria-hidden="true"></span
+              >Changes save automatically</span
+            >
+            <button id="okBtn" class="done-button btn" type="button">
+              Done <span aria-hidden="true">→</span>
+            </button>
+          </footer>
+        </div>
+        <p class="footer-caption">MADE FOR THE CURIOUS</p>
+      </section>
+    </main>
+
+    <audio id="backgroundMusic" loop preload="metadata">
+      <source src="../sounds/alan_walker.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="soundEffect" preload="auto">
+      <source src="../sounds/buttonClick.mp3" type="audio/mpeg" />
+    </audio>
+    <nav class="footer" aria-label="Main navigation">
+      <a class="home tooltip-box btn" href="../homepage/home.html" aria-label="Home"><img class="footer-btn" src="../images/home (1).png" alt="" /><span class="tooltip">Home</span></a>
+      <a class="profile tooltip-box btn" href="../EditPage/edit.html" aria-label="Profile"><img class="footer-btn" src="../images/user.png" alt="" /><span class="tooltip">Profile</span></a>
+      <a class="setting-icon tooltip-box btn" href="setting.html" aria-current="page" aria-label="Settings"><img class="footer-btn" src="../images/settings.png" alt="" /><span class="tooltip">Settings</span></a>
+      <a class="store tooltip-box btn" href="../StorePage/store.html" aria-label="Store"><img class="footer-btn" src="../images/grocery-store.png" alt="" /><span class="tooltip">Store</span></a>
+    </nav>
     <script src="setting.js"></script>
   </body>
 </html>

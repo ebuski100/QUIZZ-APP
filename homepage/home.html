@@ -1,106 +1,272 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home page</title>
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4308159798078895"
-      crossorigin="anonymous"
-    ></script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="../styles/theme.js"></script>
+    <meta name="theme-color" content="#0b1220" />
+    <meta
+      name="description"
+      content="QuizVilla — Play, learn and earn. Challenge yourself with fun quizzes."
+    />
+    <title>QuizVilla | Home</title>
+    <link rel="icon" type="image/png" href="../images/idea.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/design-system.css" />
     <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="../styles/theme.css" />
   </head>
-  <body>
-    <div class="container footer-cont">
-      <div class="home-header">
-        <div class="game-logo">
-          <img
-            src="../images/idea.png"
-            alt=""
-            height="40px"
-            width="40px "
-            class="game-logo-img"
-          />
+  <body class="home-page">
+    <main class="container footer-cont">
+      <header class="home-header">
+        <a
+          class="brand-lockup"
+          href="home.html"
+          aria-label="QuizVilla home"
+        >
+          <span class="brand-mark"
+            ><img
+              src="../images/idea.png"
+              alt=""
+              class="game-logo-img"
+          /></span>
+          <span class="brand-copy">
+            <span class="homeHeader">QuizVilla</span>
+            <span class="brand-tagline">PLAY · LEARN · EARN</span>
+          </span>
+        </a>
+        <div class="header-actions">
+          <div
+            class="resource-pill coin-pill"
+            aria-label="Coin balance"
+          >
+            <img src="../images/coin.png" alt="" />
+            <span class="coin-balance">0</span>
+          </div>
+          <div
+            class="resource-pill heart-pill"
+            aria-label="Lives remaining"
+          >
+            <img src="../images/heart.png" alt="" />
+            <span class="heart-balance">5</span>
+          </div>
+          <button
+            class="share homeInvite qv-icon-button btn"
+            type="button"
+            aria-label="Share QuizVilla"
+          >
+            <img
+              src="../images/share.png"
+              alt=""
+              class="invite-img"
+            />
+          </button>
         </div>
+      </header>
 
-        <div class="homeHeader noCopy">Play-Learn-Earn💸</div>
-        <div class="share homeInvite btn">
-          <img
-            src="../images/share.png"
-            alt="share button"
-            class="invite-img"
-          />
-        </div>
-      </div>
-      <div class="userWelcomeMsg userWelcomeMsg2"></div>
+      <section class="dashboard-content">
+        <section class="welcome-row">
+          <div class="welcome-copy">
+            <p class="qv-eyebrow">YOUR QUIZ SPACE</p>
+            <h1>
+              <span
+                class="userWelcomeMsg userWelcomeMsg2 dashboard-username"
+                >Welcome, Player</span
+              >
+            </h1>
+            <p class="welcome-subtitle">
+              Ready to put your knowledge to the test?
+            </p>
+          </div>
+          <a
+            class="avatar-link"
+            href="../EditPage/edit.html"
+            aria-label="Open your profile"
+          >
+            <img
+              class="avatar-image"
+              src="../images/user.png"
+              alt="Your profile"
+            />
+            <span class="avatar-status" aria-hidden="true"></span>
+          </a>
+        </section>
 
-      <div class="settings">
-        <div class="do-you-know">
-          <div class="heading">
-            <div class="do-you-know-logo">
-              <img src="../images/thinking.png" alt="" height="70" width="70" />
+        <section class="hero-card">
+          <div class="hero-content">
+            <span class="hero-kicker"
+              ><span class="kicker-dot"></span> THE NEXT ROUND IS
+              YOURS</span
+            >
+            <h2>Every question<br /><span>is a new chance</span></h2>
+            <p>
+              Challenge your mind, build your streak and collect
+              rewards as you play.
+            </p>
+            <div class="gameButtons">
+              <button
+                class="play btn qv-primary-button"
+                type="button"
+              >
+                Play now <span aria-hidden="true">→</span>
+              </button>
+              <button
+                class="exit btn qv-secondary-button"
+                type="button"
+              >
+                Exit
+              </button>
             </div>
-            <div class="do-you-know-title noCopy">Do You Know that ?</div>
           </div>
-          <div class="factsCont">
-            <div class="factsheader">Daily fact</div>
-            <div class="facts noCopy"></div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="hero-glow"></div>
+            <div class="hero-trophy">🏆</div>
+            <span class="spark spark-one">✦</span>
+            <span class="spark spark-two">✧</span>
+            <span class="spark spark-three">✦</span>
           </div>
-        </div>
-        <div class="gameButtons">
-          <button class="play btns btn">play</button>
+        </section>
 
-          <button class="exit btns btn">Exit</button>
-        </div>
-      </div>
-      <div class="exit-modal">
-        <div class="close-modal btn">&times;</div>
+        <section
+          class="dashboard-grid"
+          aria-label="Your game dashboard"
+        >
+          <article class="qv-panel fact-card do-you-know">
+            <div class="fact-heading">
+              <span class="fact-icon"
+                ><img src="../images/thinking.png" alt=""
+              /></span>
+              <div>
+                <p class="qv-eyebrow">A LITTLE KNOWLEDGE</p>
+                <h2 class="do-you-know-title">Did you know?</h2>
+              </div>
+            </div>
+            <div class="factsCont">
+              <span class="factsheader">TODAY'S FACT</span>
+              <p class="facts noCopy">
+                Your daily fact is loading...
+              </p>
+            </div>
+          </article>
+
+          <article class="qv-panel progress-card">
+            <div class="card-heading-row">
+              <div>
+                <p class="qv-eyebrow">YOUR JOURNEY</p>
+                <h2>Build your record</h2>
+              </div>
+              <span class="journey-icon" aria-hidden="true">✦</span>
+            </div>
+            <p class="progress-description">
+              Your quiz statistics will take shape as you play.
+              Complete a round to start tracking your progress.
+            </p>
+            <div class="progress-track"><span></span></div>
+            <div class="progress-foot">
+              <span>First round</span><span>Up next</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="quick-links" aria-label="Quick links">
+          <div class="section-heading">
+            <div>
+              <p class="qv-eyebrow">MAKE YOUR MOVE</p>
+              <h2>Explore QuizVilla</h2>
+            </div>
+          </div>
+          <div class="quick-link-grid">
+            <a class="quick-link" href="../EditPage/edit.html"
+              ><span class="quick-link-icon profile-icon"
+                ><img src="../images/user.png" alt="" /></span
+              ><span
+                ><strong>My profile</strong
+                ><small>View your player profile</small></span
+              ><span class="quick-arrow">→</span></a
+            >
+            <a class="quick-link store" href="../StorePage/store.html"
+              ><span class="quick-link-icon store-icon"
+                ><img
+                  src="../images/grocery-store.png"
+                  alt="" /></span
+              ><span
+                ><strong>Reward store</strong
+                ><small>Power up your next game</small></span
+              ><span class="quick-arrow">→</span></a
+            >
+            <a
+              class="quick-link setting-icon"
+              href="../SettingsPage/setting.html"
+              ><span class="quick-link-icon settings-icon"
+                ><img src="../images/settings.png" alt="" /></span
+              ><span
+                ><strong>Settings</strong
+                ><small>Personalise your experience</small></span
+              ><span class="quick-arrow">→</span></a
+            >
+          </div>
+        </section>
+      </section>
+
+      <section
+        class="exit-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="exit-question"
+      >
         <div class="exit-modal-contents">
+          <button
+            class="close-modal btn"
+            type="button"
+            aria-label="Close dialog"
+          >
+            &times;
+          </button>
           <div class="exit-header">
-            <div class="emoji">🥺</div>
-            <p class="exit-que noCopy">Are you sure you want to leave ?</p>
+            <div class="emoji" aria-hidden="true">🥺</div>
+            <p class="exit-que noCopy" id="exit-question">
+              Are you sure you want to leave QuizVilla?
+            </p>
           </div>
           <div class="buttons">
-            <button class="btn yes">Yes</button>
-
-            <button class="btn No">No</button>
+            <button class="btn yes" type="button">Yes, leave</button
+            ><button class="btn No" type="button">Stay here</button>
           </div>
-          <div class="modal-footer btn">Tap to Continue</div>
+          <div class="modal-footer">
+            Tap outside your comfort zone — or stay and play.
+          </div>
         </div>
-      </div>
+      </section>
+
       <audio id="backgroundMusic" loop>
         <source src="../sounds/alan_walker.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-
       <audio id="soundEffect">
         <source src="../sounds/buttonClick.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-      <div class="footer">
-        <div class="home tooltip-box btn">
-          <img class="footer-btn" src="../images/home (1).png" alt="" />
-          <div class="tooltip">Home</div>
-        </div>
-
-        <div class="profile tooltip-box btn">
-          <img class="footer-btn" src="../images/user.png" alt="" />
-          <div class="tooltip">Profile</div>
-        </div>
-
-        <div class="setting-icon tooltip-box btn">
-          <img class="footer-btn" src="../images/settings.png" alt="" />
-          <div class="tooltip">Setting</div>
-        </div>
-
-        <div class="store tooltip-box btn">
-          <img class="footer-btn" src="../images/grocery-store.png" alt="" />
-          <div class="tooltip">Store</div>
-        </div>
-      </div>
-    </div>
-
+    </main>
+    <nav class="footer" aria-label="Main navigation">
+      <a class="home tooltip-box btn active" href="home.html" aria-current="page" aria-label="Home"><img class="footer-btn" src="../images/home (1).png" alt="" /><span class="tooltip">Home</span></a>
+      <a class="profile tooltip-box btn" href="../EditPage/edit.html" aria-label="Profile"><img class="footer-btn" src="../images/user.png" alt="" /><span class="tooltip">Profile</span></a>
+      <a class="setting-icon tooltip-box btn" href="../SettingsPage/setting.html" aria-label="Settings"><img class="footer-btn" src="../images/settings.png" alt="" /><span class="tooltip">Settings</span></a>
+      <a class="store tooltip-box btn" href="../StorePage/store.html" aria-label="Store"><img class="footer-btn" src="../images/grocery-store.png" alt="" /><span class="tooltip">Store</span></a>
+    </nav>
     <script src="home.js"></script>
   </body>
 </html>

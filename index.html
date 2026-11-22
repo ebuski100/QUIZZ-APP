@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Load Page</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="./styles/theme.js"></script>
+    <title>QuizVilla | Loading</title>
+    <link rel="icon" type="image/png" href="../images/idea.png" />
     <meta
       name="description"
       content="Test your Knowledge with Our fun, fast and tricky Quizzes"
@@ -21,7 +26,10 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <meta property="og:url" content="https://ebuski100.github.io/QUIZZ-APP/" />
+    <meta
+      property="og:url"
+      content="https://ebuski100.github.io/QUIZZ-APP/"
+    />
     <meta property="og:type" content="website" />
 
     <meta name="twitter:card" content="Summary_large_image" />
@@ -35,17 +43,43 @@
       content="https://ebuski100.github.io/quiz-app/images/linkCardImage.png"
     />
     <link rel="stylesheet" href="./LoadingPage/load.css" />
+    <link rel="stylesheet" href="./styles/theme.css" />
   </head>
   <body>
-    <div id="loader-overlay">
-      <div class="game-icon">
-        <img src="./images/idea.png" height="120" alt="" />
+    <main
+      id="loader-overlay"
+      class="loader-shell"
+      aria-labelledby="loader-title"
+      aria-busy="true"
+    >
+      <div class="launch-orbit" aria-hidden="true">
+        <span class="orbit orbit-one"></span
+        ><span class="orbit orbit-two"></span
+        ><span class="orbit-core">✦</span>
       </div>
-      <div class="loader-bar">
-        <div class="loader-progress"></div>
+      <div class="loader-card">
+        <div class="game-icon">
+          <img src="./images/idea.png" alt="QuizVilla mark" />
+        </div>
+        <p class="loader-kicker">YOUR NEXT CHALLENGE AWAITS</p>
+        <h1 id="loader-title" class="loader-brand">
+          Quiz<span>Villa</span>
+        </h1>
+        <p class="loader-text" role="status" aria-live="polite">
+          Preparing your game…
+        </p>
+        <div
+          class="loader-bar"
+          role="progressbar"
+          aria-label="Loading QuizVilla"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <div class="loader-progress"></div>
+        </div>
+        <p class="loader-caption">PLAY · LEARN · WIN</p>
       </div>
-      <div class="loader-text">Loading...</div>
-    </div>
+    </main>
 
     <script src="./LoadingPage/load.js"></script>
   </body>

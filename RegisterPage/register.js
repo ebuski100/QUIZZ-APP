@@ -1,40 +1,48 @@
+const registerForm = document.getElementById("registerForm");
 const usernameInput = document.getElementById("username");
 const ageInput = document.getElementById("age");
-
 const quitBtn = document.querySelector(".notInterested");
-const regSubmitBtn = document.querySelector(".regSubmitBtn");
-console.log(regSubmitBtn);
+const soundEffect = document.getElementById("soundEffect");
 
 const isGithubPages = window.location.hostname.includes("github.io");
 const base = isGithubPages ? "/QUIZZ-APP/" : "../";
-document
-  .getElementById("registerForm")
-  .addEventListener("submit", function (e) {
-    e.preventDefault();
 
-    const username = document.getElementById("username").value.trim();
-    const age = document.getElementById("age").value;
+function playButtonSound() {
+  const soundState = localStorage.getItem("soundState") || "on";
 
-    localStorage.setItem("username", username);
-    localStorage.setItem("age", age);
-    localStorage.setItem("showWelcome", "true");
-    window.location.href = base + "homepage/home.html";
-  });
+  if (soundState !== "on" || !soundEffect) return;
 
-const buttons = document.querySelectorAll(".btn");
-let soundState = localStorage.getItem("soundState") || "on";
+  soundEffect.currentTime = 0;
+  const playback = soundEffect.play();
 
-const soundEffect = document.getElementById("soundEffect");
-buttons.forEach((button) => {
-  console.log(soundState);
-  button.addEventListener("click", () => {
-    if (soundState === "on") {
-      soundEffect.currentTime = 0;
-      soundEffect.play();
-    }
-  });
+  // Browsers may block audio until the user has interacted with the page.
+  if (playback && typeof playback.catch === "function") {
+    playback.catch(() => {});
+  }
+}
+
+document.querySelectorAll(".btn").forEach((button) => {
+  button.addEventListener("click", playButtonSound);
+});
+
+registerForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const username = usernameInput.value.trim();
+  const age = ageInput.value;
+
+  if (!username || !age) {
+    registerForm.reportValidity();
+    return;
+  }
+
+  localStorage.setItem("username", username);
+  localStorage.setItem("age", age);
+  localStorage.setItem("showWelcome", "true");
+
+  window.location.href = `${base}homepage/home.html`;
 });
 
 quitBtn.addEventListener("click", () => {
-  location.href = "https://www.google.com";
+  window.location.href = "https://www.google.com";
 });

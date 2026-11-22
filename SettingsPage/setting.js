@@ -1,137 +1,146 @@
-const okBtn = document.getElementById("okBtn");
-const difficultySelect = document.getElementById("Difficulty");
-const themeBtn = document.querySelector(".item2");
-const container = document.querySelector(".container");
-const settingTitle = document.querySelector(".setting-title");
-const themeIcon = document.querySelector(".themeIcon");
+(() => {
+  const readSetting = (key, fallback = null) => {
+    try { return window.localStorage ? localStorage.getItem(key) ?? fallback : fallback; }
+    catch { return fallback; }
+  };
+  const writeSetting = (key, value) => {
+    try { if (window.localStorage) localStorage.setItem(key, String(value)); }
+    catch { /* Settings remain usable when storage is blocked or full. */ }
+  };
 
-const savedTheme = localStorage.getItem("theme") || "light";
-const selectedDifficulty = localStorage.getItem("selectedDifficulty") || "easy";
+  const difficultySelect = document.getElementById("Difficulty");
+  const themeChoices = document.querySelectorAll(".theme-choice");
+  const soundToggle = document.getElementById("soundToggle");
+  const musicToggle = document.getElementById("musicToggle");
+  const backgroundMusic = document.getElementById("backgroundMusic");
+  const soundEffect = document.getElementById("soundEffect");
+  const doneButton = document.getElementById("okBtn");
+  let soundState = readSetting("soundState", "on");
+  let musicState = readSetting("musicState", "paused");
 
-const lastPage = localStorage.getItem("lastPage");
-const isGithubPages = window.location.hostname.includes("github.io");
-const base = isGithubPages ? "/QUIZZ-APP/" : "../";
-
-difficultySelect.value = selectedDifficulty;
-difficultySelect.addEventListener("change", () => {
-  const selectedDifficulty = difficultySelect.value;
-  localStorage.setItem("selectedDifficulty", selectedDifficulty);
-  console.log("Difficulty set to:", selectedDifficulty);
-});
-
-if (savedTheme === "dark") {
-  container.classList.add("dark");
-  settingTitle.classList.add("head-color");
-  themeIcon.src = "../images/light-mode.png";
-} else {
-  themeIcon.src = "../images/night-mode.png";
-}
-
-themeBtn.addEventListener("click", () => {
-  container.classList.toggle("dark");
-  settingTitle.classList.toggle("head-color");
-
-  if (container.classList.contains("dark")) {
-    themeIcon.src = "../images/light-mode.png";
-    localStorage.setItem("theme", "dark");
-  } else {
-    themeIcon.src = "../images/night-mode.png";
-    localStorage.setItem("theme", "light");
+  if (difficultySelect) {
+    const storedDifficulty = readSetting("selectedDifficulty", "easy");
+    difficultySelect.value = ["easy", "medium", "hard"].includes(storedDifficulty) ? storedDifficulty : "easy";
+    difficultySelect.addEventListener("change", () => writeSetting("selectedDifficulty", difficultySelect.value));
   }
-});
 
-const musicBtn = document.querySelector(".item4"); // Select the Music button
-const backgroundMusic = document.getElementById("backgroundMusic"); // Select the audio element
-
-const backgroundMusicIcon = document.querySelector(".background-music-icon");
-
-const savedMusicState = localStorage.getItem("musicState") || "paused";
-
-const savedMusicTime = parseFloat(localStorage.getItem("musicTime")) || 0;
-backgroundMusic.currentTime = savedMusicTime;
-backgroundMusic.addEventListener("timeupdate", () => {
-  localStorage.setItem("musicTime", backgroundMusic.currentTime);
-});
-
-if (savedMusicState === "playing") {
-  backgroundMusic.play();
-
-  backgroundMusicIcon.src = "../images/mute.png";
-} else {
-  backgroundMusic.pause();
-
-  backgroundMusicIcon.src = "../images/mute.png"; // Save the state as playing
-}
-
-document.addEventListener("visibilitychange", () => {
-  if (savedMusicState === "playing") {
-    if (document.hidden) {
-      backgroundMusic.pause();
-    } else {
-      backgroundMusic.play();
-    }
-  } else {
-    backgroundMusic.pause();
+  function applyTheme(theme) {
+    const activeTheme = theme === "dark" ? "dark" : "light";
+    document.body.dataset.theme = activeTheme;
+    document.documentElement.dataset.theme = activeTheme;
+    document.documentElement.style.colorScheme = activeTheme;
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) themeColor.content = activeTheme === "light" ? "#f3f5f8" : "#0b1220";
+    themeChoices.forEach((choice) => choice.setAttribute("aria-pressed", String(choice.dataset.theme === activeTheme)));
   }
-});
-musicBtn.addEventListener("click", () => {
-  if (backgroundMusic.paused) {
-    backgroundMusic.play();
-    localStorage.setItem("musicState", "playing");
-    backgroundMusicIcon.src = "../images/mute.png"; // Save the state as playing
-    console.log("Music started");
-  } else {
-    backgroundMusic.pause();
-    localStorage.setItem("musicState", "paused"); // Save the state as paused
-    console.log("Music paused");
-    backgroundMusicIcon.src = "../images/musical-note.png";
-  }
-});
-const buttons = document.querySelectorAll(".btn");
-// console.log(buttons);
-
-const soundBtn = document.querySelector(".item3");
-let soundState = localStorage.getItem("soundState") || "on";
-
-const soundIcon = document.querySelector(".sound img");
-if (soundState === "on") {
-  soundIcon.src = "../images/volume.png"; // Sound is on
-} else {
-  soundIcon.src = "../images/mute.png"; // Sound is off
-}
-
-soundBtn.addEventListener("click", () => {
-  if (soundState === "on") {
-    soundState = "off";
-    soundIcon.src = "../images/mute.png";
-    localStorage.setItem("soundState", "off");
-    console.log("Sound effects turned off");
-  } else {
-    soundState = "on";
-    soundIcon.src = "../images/volume.png";
-    localStorage.setItem("soundState", "on");
-    console.log("Sound effects turned on");
-  }
-});
-
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    console.log(soundState);
-    if (soundState === "on") {
-      soundEffect.currentTime = 0; // Reset sound to the beginning
-      soundEffect.play(); // Play the sound effect
-    }
+  applyTheme(readSetting("theme", "light"));
+  themeChoices.forEach((choice) => choice.addEventListener("click", () => {
+    const theme = choice.dataset.theme === "dark" ? "dark" : "light";
+    writeSetting("theme", theme);
+    applyTheme(theme);
+  }));
+  window.addEventListener("storage", (event) => {
+    if (event.key === "theme" || event.key === null) applyTheme(event.newValue);
   });
-});
 
-okBtn.addEventListener("click", () => {
-  if (soundState === "on") {
-    soundEffect.currentTime = 0;
-    soundEffect.play().catch((error) => {
-      console.error("Sound effect playback failed:", error);
-    });
+  function updateToggle(button, enabled, onLabel, offLabel, onAlt, offAlt) {
+    if (!button) return;
+    button.setAttribute("aria-pressed", String(enabled));
+    button.setAttribute("aria-label", enabled ? onAlt : offAlt);
+    const label = button.querySelector(".state-label");
+    const icon = button.querySelector(".state-icon img");
+    if (label) label.textContent = enabled ? onLabel : offLabel;
+    if (icon) icon.src = enabled ? "../images/volume.png" : "../images/mute.png";
   }
-  setTimeout(() => {
-    window.location.href = base + lastPage;
-  }, 200);
-});
+  soundState = soundState === "off" ? "off" : "on";
+  updateToggle(soundToggle, soundState === "on", "On", "Off", "Turn sound effects off", "Turn sound effects on");
+  soundToggle?.addEventListener("click", () => {
+    soundState = soundState === "on" ? "off" : "on";
+    writeSetting("soundState", soundState);
+    updateToggle(soundToggle, soundState === "on", "On", "Off", "Turn sound effects off", "Turn sound effects on");
+  });
+
+  // Existing pages store musicState as "playing" or "paused".
+  musicState = musicState === "playing" || musicState === "on" ? "playing" : "paused";
+  let musicWanted = musicState === "playing";
+  let restoredMusicTime = false;
+  function saveMusicTime() {
+    if (backgroundMusic && Number.isFinite(backgroundMusic.currentTime)) writeSetting("musicTime", backgroundMusic.currentTime);
+  }
+  function restoreMusicTime() {
+    if (!backgroundMusic || restoredMusicTime) return;
+    if (backgroundMusic.readyState < 1) return;
+    const savedTime = Number.parseFloat(readSetting("musicTime", "0"));
+    if (Number.isFinite(savedTime) && savedTime >= 0) {
+      try {
+        if (Number.isFinite(backgroundMusic.duration) && backgroundMusic.duration > 0) {
+          backgroundMusic.currentTime = Math.min(savedTime, backgroundMusic.duration);
+        } else {
+          backgroundMusic.currentTime = savedTime;
+        }
+      } catch { /* The browser may not have seekable audio data yet. */ }
+    }
+    restoredMusicTime = true;
+  }
+  async function syncMusicPlayback() {
+    if (!backgroundMusic) return;
+    if (!musicWanted || document.hidden) {
+      backgroundMusic.pause();
+      return;
+    }
+    restoreMusicTime();
+    try { await backgroundMusic.play(); }
+    catch { /* Browser autoplay restrictions are expected; the toggle can be used again. */ }
+  }
+  if (backgroundMusic) {
+    backgroundMusic.addEventListener("loadedmetadata", restoreMusicTime, { once: true });
+    backgroundMusic.addEventListener("timeupdate", saveMusicTime);
+    backgroundMusic.addEventListener("pause", saveMusicTime);
+    updateToggle(musicToggle, musicWanted, "On", "Off", "Turn background music off", "Turn background music on");
+    if (backgroundMusic.readyState >= 1) restoreMusicTime();
+    syncMusicPlayback();
+  } else {
+    updateToggle(musicToggle, false, "On", "Off", "Turn background music off", "Turn background music on");
+  }
+  musicToggle?.addEventListener("click", () => {
+    musicWanted = !musicWanted;
+    musicState = musicWanted ? "playing" : "paused";
+    writeSetting("musicState", musicState);
+    updateToggle(musicToggle, musicWanted, "On", "Off", "Turn background music off", "Turn background music on");
+    syncMusicPlayback();
+  });
+  document.addEventListener("visibilitychange", syncMusicPlayback);
+
+  // Keep the existing .btn click sound convention, with one listener and no
+  // second sound in the Done handler.
+  document.addEventListener("click", (event) => {
+    if (soundState !== "on" || !soundEffect || !(event.target instanceof Element)) return;
+    if (!event.target.closest(".btn")) return;
+    try {
+      soundEffect.currentTime = 0;
+      const playback = soundEffect.play();
+      if (playback?.catch) playback.catch(() => {});
+    } catch { /* Optional audio should never prevent settings or navigation. */ }
+  });
+
+  function getReturnUrl() {
+    const githubPages = window.location.hostname.toLowerCase().endsWith("github.io");
+    const base = githubPages ? "/QUIZZ-APP/" : "../";
+    let page = readSetting("lastPage", "homepage/home.html");
+    if (typeof page !== "string" || !page.trim()) page = "homepage/home.html";
+    page = page.trim().replace(/^\/+/, "");
+    if (page.startsWith("QUIZZ-APP/")) page = page.slice("QUIZZ-APP/".length);
+    const segments = page.split("/");
+    const valid = !/[:\\?#]/.test(page) && segments.every((part) => part && part !== "." && part !== "..");
+    if (!valid) page = "homepage/home.html";
+    return base + page;
+  }
+  doneButton?.addEventListener("click", () => {
+    saveMusicTime();
+    window.setTimeout(() => { window.location.href = getReturnUrl(); }, 120);
+  });
+
+  document.querySelector(".profile")?.addEventListener("click", () => {
+    writeSetting("editReturnPage", "SettingsPage/setting.html");
+  });
+})();
