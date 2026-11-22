@@ -110,14 +110,16 @@ body {
 /* Timer */
 .timer-box { display: flex; width: 100%; min-height: 54px; align-items: center; gap: 14px; padding: 9px 13px; border: 1px solid var(--quiz-border); border-radius: 16px; background: rgba(255,255,255,.035); }
 .timer-label { width: 22px; height: 22px; object-fit: contain; opacity: .85; }
-.timer-bar { position: relative; width: 100%; height: 9px; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.06); border-radius: 99px; background: rgba(255,255,255,.09); }
+.timer-bar { position: relative; width: auto; min-width: 32px; height: 9px; flex: 1 1 auto; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.06); border-radius: 99px; background: rgba(255,255,255,.09); }
 .timer-show { height: 100%; min-width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--qv-gold), var(--qv-gold-bright)); box-shadow: 0 0 14px rgba(214,173,96,.3); transition: width .25s linear; }
-.pauseTimer { display: flex; position: relative; min-width: 58px; flex-direction: row; gap: 5px; align-items: center; justify-content: center; padding: 7px 9px; border: 1px solid var(--quiz-border); border-radius: 11px; background: var(--qv-surface); box-shadow: none; color: var(--qv-text); cursor: pointer; }
-.pauseTimer img { width: 14px; height: 14px; object-fit: contain; }
-.pauseLabel { font-size: .68rem; font-weight: 700; text-transform: capitalize; }
+.pauseTimer { position: relative; display: inline-flex; flex: 0 0 auto; flex-direction: row; align-items: center; justify-content: center; gap: 8px; min-width: max-content; padding: 8px 12px; border: 1px solid var(--quiz-gold-border); border-radius: 11px; background: var(--qv-surface); box-shadow: none; color: var(--qv-text); cursor: pointer; transition: border-color .18s ease, background .18s ease, opacity .18s ease; }
+.pauseTimer:hover { border-color: var(--qv-gold); background: var(--qv-surface-hover); }
+.pauseTimer:focus-visible { outline: 3px solid var(--qv-gold-bright); outline-offset: 3px; }
+.pauseTimer img { display: block; width: 18px; height: 18px; flex: 0 0 18px; object-fit: contain; }
+.pauseLabel { flex: 0 0 auto; color: var(--qv-text); font-size: .76rem; font-weight: 750; line-height: 1.2; white-space: nowrap; }
 .pauseTimeNum { display: none; }
-.pauseTimeNum.hintNumDisplay { display: inline-flex; font-size: .7rem; }
-.tooltip { z-index: 5; width: max-content; max-width: 130px; padding: 7px 9px; border: 1px solid var(--quiz-border); border-radius: 8px; color: var(--qv-text); background: #101827; font: 600 .7rem var(--qv-font); bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
+.pauseTimeNum.hintNumDisplay { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; color: var(--qv-gold-bright); font-size: .72rem; font-weight: 850; }
+.tooltip { position: absolute; z-index: 5; width: max-content; max-width: min(220px, calc(100vw - 32px)); padding: 7px 9px; border: 1px solid var(--quiz-border); border-radius: 8px; color: var(--qv-text); background: #101827; font: 600 .7rem var(--qv-font); bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
 .pauseTimer:hover .tooltip, .hint:hover .tooltip { visibility: visible; opacity: 1; }
 
 /* Question and progress */
@@ -149,12 +151,15 @@ body {
 @keyframes quizWrong { 50% { box-shadow: 0 0 0 4px rgba(229,107,111,.2); } }
 
 /* Hints */
-.hints-cont { display: flex; justify-content: center; align-items: center; gap: 14px; padding-top: 2px; }
-.hint { position: relative; display: flex; min-width: 108px; min-height: 58px; align-items: center; justify-content: center; gap: 11px; padding: 9px 16px; border: 1px solid var(--quiz-border); border-radius: 15px; background: var(--quiz-panel); cursor: pointer; transition: .2s ease; }
+.hints-cont { display: grid; width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); justify-content: center; align-items: stretch; gap: 12px; padding-top: 2px; }
+.hint { position: relative; display: grid; min-width: 0; min-height: 64px; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; justify-content: initial; gap: 8px; padding: 9px 12px; border: 1px solid var(--quiz-border); border-radius: 15px; color: var(--qv-text); background: var(--quiz-panel); text-align: left; cursor: pointer; transition: transform .2s ease, border-color .2s ease, background .2s ease, opacity .2s ease; }
 .hint:hover { transform: translateY(-2px); border-color: var(--quiz-gold-border); background: var(--qv-surface-hover); }
-.hint img { width: 27px; height: 27px; object-fit: contain; }
-.hint span { color: var(--qv-gold-bright); font-size: .78rem; font-weight: 850; }
-.hint .tooltip { bottom: calc(100% + 9px); }
+.hint:focus-visible { outline: 3px solid var(--qv-gold-bright); outline-offset: 3px; }
+.hint:active { transform: translateY(0); }
+.hint img { display: block; width: 26px; height: 26px; object-fit: contain; }
+.hint-label { min-width: 0; color: var(--qv-text); font-size: .78rem; font-weight: 750; line-height: 1.25; overflow-wrap: anywhere; }
+.hint .hint-count { display: inline-flex; min-width: 20px; height: 20px; align-items: center; justify-content: center; padding: 0 4px; border: 1px solid var(--quiz-gold-border); border-radius: 999px; color: var(--qv-gold-bright); background: var(--qv-gold-muted); font-size: .72rem; font-weight: 850; line-height: 1; }
+.hint[style*="pointer-events: none"] { cursor: not-allowed; }
 .displayMax { display: flex !important; }
 
 /* Dialogs and overlays */
@@ -225,8 +230,9 @@ body {
   .coins-btn img, .heart-btn img { width: 11px; height: 11px; }
   .timer-box { min-height: 48px; gap: 9px; padding: 8px 10px; }
   .timer-label { width: 18px; height: 18px; }
-  .pauseTimer { min-width: 52px; padding: 6px; }
-  .pauseLabel { font-size: .62rem; }
+  .pauseTimer { gap: 6px; padding: 7px 8px; }
+  .pauseTimer img { width: 16px; height: 16px; flex-basis: 16px; }
+  .pauseLabel { font-size: .7rem; }
   .question-box { min-height: 205px; gap: 18px; padding: 22px 16px; border-radius: 19px; }
   .question-box::before { font-size: .6rem; }
   .question { font-size: clamp(1.08rem, 5vw, 1.4rem); }
@@ -237,9 +243,10 @@ body {
   .optionId { width: 30px; height: 30px; flex-basis: 30px; }
   .option-text { font-size: .87rem; }
   .hints-cont { gap: 8px; margin-top: auto; }
-  .hint { min-width: 0; min-height: 53px; flex: 1; gap: 7px; padding: 8px 9px; border-radius: 13px; }
-  .hint img { width: 23px; height: 23px; }
-  .hint span { font-size: .72rem; }
+  .hint { min-height: 78px; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 27px auto; justify-items: center; gap: 5px 3px; padding: 8px 5px; border-radius: 13px; }
+  .hint img { width: 23px; height: 23px; grid-column: 1 / -1; grid-row: 1; }
+  .hint-label { grid-column: 1; grid-row: 2; font-size: .7rem; text-align: center; }
+  .hint .hint-count { grid-column: 2; grid-row: 2; min-width: 18px; height: 18px; font-size: .68rem; }
   .congratulationsModalCont, .failedModalCont, .time-upModalContainer, .secondChanceModalContainer, .quitEarlyModalContainer { padding: 23px 18px; border-radius: 20px; }
 }
 @media (max-width: 360px) {
@@ -249,8 +256,54 @@ body {
   .header { gap: 5px; }
   .coins, .heart { padding-left: 6px; }
   .coin-num, .heartnum { font-size: .7rem; }
-  .hint { gap: 5px; padding-inline: 6px; }
+  .hint { gap: 4px 2px; padding-inline: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .option, .hint, .quit-btn, .quizinvite, .setting-icon { transition: none; }
+}
+
+/* Match the Homepage Install App button without shifting the quiz layout. */
+.game-content .pwa-install-quiz {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid #69c28e;
+  border-radius: 12px;
+  color: #fff;
+  background: #16834a;
+  box-shadow: 0 8px 20px rgba(22, 131, 74, 0.27);
+  font-size: 0.82rem;
+  font-weight: 800;
+  transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+.game-content .pwa-install-quiz:hover {
+  border-color: #8cdbad;
+  color: #fff;
+  background: #116d3d;
+  box-shadow: 0 11px 25px rgba(22, 131, 74, 0.36);
+}
+.game-content .pwa-install-quiz:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+.game-content .pwa-install-quiz:active {
+  color: #fff;
+  background: #0e5b34;
+  transform: translateY(0);
+}
+.game-content .install-app-icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+@media (max-width: 560px) {
+  .game-content .pwa-install-quiz {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 0.77rem;
+  }
 }

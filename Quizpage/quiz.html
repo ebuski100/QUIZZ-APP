@@ -10,9 +10,16 @@
     <script src="../scripts/pwa.js" defer></script>
     <script src="../scripts/pwa-install.js" defer></script>
     <link rel="manifest" href="../manifest.json" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../images/apple-touch-icon.png"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta name="apple-mobile-web-app-title" content="QuizVilla" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#0b1220" />
@@ -86,8 +93,16 @@
         </div>
 
         <div class="pwa-quiz-install-wrap">
-          <button class="pwa-install-button pwa-install-quiz" type="button" aria-haspopup="dialog" aria-controls="pwa-install-dialog">
-            <span aria-hidden="true">↓</span> Install App
+          <button
+            class="pwa-install-button pwa-install-quiz"
+            type="button"
+            aria-haspopup="dialog"
+            aria-controls="pwa-install-dialog"
+          >
+            <svg class="install-app-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 3v11m-4-4 4 4 4-4M4 17v3h16v-3" />
+            </svg>
+            Install App
           </button>
         </div>
 
@@ -102,14 +117,14 @@
             <div class="timer-show"></div>
           </div>
           <div class="pauseTimer">
-            <div class="pauseLabel">pause</div>
+            <div class="pauseLabel">Pause Timer</div>
             <img
               src="../images/play-button-arrowhead.png"
               height="20"
               alt=""
             />
             <span class="pauseTimeNum">0</span>
-            <div class="tooltip">pauseTime</div>
+            <!-- <div class="tooltip">pauseTime</div> -->
           </div>
         </div>
         <div class="priceLevelSect">
@@ -411,19 +426,19 @@
               height="40"
               width="40"
             />
-            <span class="fiftyNum">1</span>
-            <div class="tooltip">50/50</div>
+            <span class="hint-label">50/50</span>
+            <span class="fiftyNum hint-count">1</span>
           </div>
 
           <div class="hint btn call-an-expert">
             <img src="../images/user.png" alt="" />
-            <span class="expertNum">1</span>
-            <div class="tooltip">expert-ans</div>
+            <span class="hint-label">Expert Answer</span>
+            <span class="expertNum hint-count">1</span>
           </div>
           <div class="hint btn another-question">
             <img src="../images/undo.png" alt="" />
-            <span class="anotherQuestionNum">1</span>
-            <div class="tooltip">another question</div>
+            <span class="hint-label">Another Question</span>
+            <span class="anotherQuestionNum hint-count">1</span>
           </div>
         </div>
       </div>

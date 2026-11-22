@@ -10,9 +10,16 @@
     <script src="../scripts/pwa.js" defer></script>
     <script src="../scripts/pwa-install.js" defer></script>
     <link rel="manifest" href="../manifest.json" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../images/apple-touch-icon.png"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta name="apple-mobile-web-app-title" content="QuizVilla" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#0b1220" />
@@ -160,10 +167,31 @@
             <div class="setting-row pwa-install-row">
               <div class="setting-copy">
                 <span class="setting-name">Install QuizVilla</span>
-                <span class="setting-description">Add QuizVilla to your device for a convenient app-style launch.</span>
-                <p class="pwa-install-status" aria-live="polite">Installation is available from this device's browser.</p>
+                <span class="setting-description"
+                  >Add QuizVilla to your device for a convenient
+                  app-style launch.</span
+                >
+                <p class="pwa-install-status" aria-live="polite">
+                  Installation is available from this device's
+                  browser.
+                </p>
               </div>
-              <button class="pwa-install-button" type="button" aria-haspopup="dialog" aria-controls="pwa-install-dialog"><span aria-hidden="true">↓</span> Install App</button>
+              <button
+                class="pwa-install-button"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="pwa-install-dialog"
+              >
+                <svg
+                  class="install-app-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M12 3v11m-4-4 4 4 4-4M4 17v3h16v-3" />
+                </svg>
+                Install App
+              </button>
             </div>
           </div>
 
@@ -181,10 +209,23 @@
       </section>
     </main>
 
-    <dialog id="pwa-install-dialog" class="pwa-install-dialog" aria-labelledby="pwa-install-title">
+    <dialog
+      id="pwa-install-dialog"
+      class="pwa-install-dialog"
+      aria-labelledby="pwa-install-title"
+    >
       <div class="pwa-install-dialog-content">
-        <button class="pwa-install-close" type="button" data-install-close aria-label="Close installation help">&times;</button>
-        <h2 id="pwa-install-title" data-install-title>Install QuizVilla</h2>
+        <button
+          class="pwa-install-close"
+          type="button"
+          data-install-close
+          aria-label="Close installation help"
+        >
+          &times;
+        </button>
+        <h2 id="pwa-install-title" data-install-title>
+          Install QuizVilla
+        </h2>
         <p data-install-intro></p>
         <ol data-install-steps></ol>
       </div>
@@ -197,10 +238,47 @@
       <source src="../sounds/buttonClick.mp3" type="audio/mpeg" />
     </audio>
     <nav class="footer" aria-label="Main navigation">
-      <a class="home tooltip-box btn" href="../homepage/home.html" aria-label="Home"><img class="footer-btn" src="../images/home (1).png" alt="" /><span class="tooltip">Home</span></a>
-      <a class="profile tooltip-box btn" href="../EditPage/edit.html" aria-label="Profile"><img class="footer-btn" src="../images/user.png" alt="" /><span class="tooltip">Profile</span></a>
-      <a class="setting-icon tooltip-box btn" href="setting.html" aria-current="page" aria-label="Settings"><img class="footer-btn" src="../images/settings.png" alt="" /><span class="tooltip">Settings</span></a>
-      <a class="store tooltip-box btn" href="../StorePage/store.html" aria-label="Store"><img class="footer-btn" src="../images/grocery-store.png" alt="" /><span class="tooltip">Store</span></a>
+      <a
+        class="home tooltip-box btn"
+        href="../homepage/home.html"
+        aria-label="Home"
+        ><img
+          class="footer-btn"
+          src="../images/home (1).png"
+          alt=""
+        /><span class="tooltip">Home</span></a
+      >
+      <a
+        class="profile tooltip-box btn"
+        href="../EditPage/edit.html"
+        aria-label="Profile"
+        ><img
+          class="footer-btn"
+          src="../images/user.png"
+          alt=""
+        /><span class="tooltip">Profile</span></a
+      >
+      <a
+        class="tooltip-box btn"
+        href="setting.html"
+        aria-current="page"
+        aria-label="Settings"
+        ><img
+          class="footer-btn"
+          src="../images/settings.png"
+          alt=""
+        /><span class="tooltip">Settings</span></a
+      >
+      <a
+        class="store tooltip-box btn"
+        href="../StorePage/store.html"
+        aria-label="Store"
+        ><img
+          class="footer-btn"
+          src="../images/grocery-store.png"
+          alt=""
+        /><span class="tooltip">Store</span></a
+      >
     </nav>
     <script src="setting.js"></script>
   </body>
